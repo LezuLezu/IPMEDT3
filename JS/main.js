@@ -1,3 +1,3 @@
-window.onload () => {
+window.onload = () => {
   console.log("Hallo daar");
 }
