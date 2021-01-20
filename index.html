@@ -9,6 +9,9 @@
   </head>
   <body>
     <a-scene id="js--scene">
+
+      <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:800">
+
       <a-assets>
         <a-asset-item id="petriSchaal_Inhoud-obj" src="assets/BlenderModellen/petriSchaal_Inhoud.obj"></a-asset-item>
         <a-asset-item id="petriSchaal_Inhoud-mtl" src="assets/BlenderModellen/petriSchaal_Inhoud.mtl"></a-asset-item>
@@ -17,7 +20,6 @@
         <a-asset-item id="tafel-obj" src="Assets/Tafel.obj"></a-asset-item>
         <a-asset-item id="tafel-mtl" src="Assets/Tafel.mtl"></a-asset-item>
       </a-assets>
-      <a-camera id="js--camera" wasd-controls="acceleration:800" position="0 2 0">
 
         <a-entity
           cursor = "fuse: true; fuseTimeout: 2000"
