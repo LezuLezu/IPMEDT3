@@ -9,13 +9,18 @@
   </head>
   <body>
     <a-scene id="js--scene">
+      <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:800">
+
+
+     
       <a-assets>
         <a-asset-item id="petriSchaal_Inhoud-obj" src="assets/BlenderModellen/petriSchaal_Inhoud.obj"></a-asset-item>
         <a-asset-item id="petriSchaal_Inhoud-mtl" src="assets/BlenderModellen/petriSchaal_Inhoud.mtl"></a-asset-item>
         <a-asset-item id="petriSchaal-obj" src="assets/BlenderModellen/petriSchaal.obj"></a-asset-item>
         <a-asset-item id="petriSchaal-mtl" src="assets/BlenderModellen/petriSchaal.mtl"></a-asset-item>
+        <a-asset-item id="tafel-obj" src="Assets/Tafel.obj"></a-asset-item>
+        <a-asset-item id="tafel-mtl" src="Assets/Tafel.mtl"></a-asset-item>
       </a-assets>
-      <a-camera id="js--camera" wasd-controls="acceleration:800">
         <a-entity
           cursor = "fuse: true; fuseTimeout: 2000"
           material = "color: black; shader: flat"
@@ -41,6 +46,9 @@
       <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#24b8ff"></a-plane>
       <!-- front end -> behind camera -->
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#24b8ff"></a-plane>
+
+      <!-- Tafel -->
+      <a-obj-model id="js--tafel" src="#tafel-obj" mtl="#tafel-mtl" rotation="0 -90 0" position="0 0 -2.5"></a-obj-model>
 
     </a-scene>
   </body>
