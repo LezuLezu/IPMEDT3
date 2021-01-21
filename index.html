@@ -12,14 +12,12 @@
 
       <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:800">
 
-      <a-assets>
-        <a-asset-item id="petriSchaal_Inhoud-obj" src="assets/BlenderModellen/petriSchaal_Inhoud.obj"></a-asset-item>
-        <a-asset-item id="petriSchaal_Inhoud-mtl" src="assets/BlenderModellen/petriSchaal_Inhoud.mtl"></a-asset-item>
-        <a-asset-item id="petriSchaal-obj" src="assets/BlenderModellen/petriSchaal.obj"></a-asset-item>
-        <a-asset-item id="petriSchaal-mtl" src="assets/BlenderModellen/petriSchaal.mtl"></a-asset-item>
-        <a-asset-item id="tafel-obj" src="Assets/Tafel.obj"></a-asset-item>
-        <a-asset-item id="tafel-mtl" src="Assets/Tafel.mtl"></a-asset-item>
-      </a-assets>
+      <!-- <a-assets>
+        <a-asset-item id="petriSchaal_Inhoud-obj" src="Assets/BlenderModellen/petriSchaal_Inhoud.obj"></a-asset-item>
+        <a-asset-item id="petriSchaal_Inhoud-mtl" src="Assets/BlenderModellen/petriSchaal_Inhoud.mtl"></a-asset-item>
+        <a-asset-item id="petriSchaal-obj" src="Assets/BlenderModellen/petriSchaal.obj"></a-asset-item>
+        <a-asset-item id="petriSchaal-mtl" src="Assets/BlenderModellen/petriSchaal.mtl"></a-asset-item>
+      </a-assets> -->
 
         <a-entity
           cursor = "fuse: true; fuseTimeout: 2000"
@@ -29,9 +27,11 @@
         ></a-entity>
 
       </a-camera>
-      <a-plane static-body color="yellow" height="50" width="50" rotation="-90 0 0"></a-plane>
-      <a-obj-model src="#petriSchaal-obj" mtl="#petriSchaal-mtl" position="0 0 0"></a-obj-model>
-      <a-obj-model src="#petriSchaal_Inhoud-obj" mtl="#petriSchaal_Inhoud-mtl" position="0 0 5"></a-obj-model>
+
+      <!-- <a-obj-model src="#petriSchaal-obj" mtl="#petriSchaal-mtl" position="0 0 0"></a-obj-model>
+      <a-obj-model src="#petriSchaal_Inhoud-obj" mtl="#petriSchaal_Inhoud-mtl" position="0 0 5"></a-obj-model> -->
+      <a-gltf-model src="Assets/BlenderModellen/petriSchaal.glb"></a-gltf-model>
+      <a-gltf-model src="Assets/BlenderModellen/petriSchaal.glb" position="0 0 5"></a-gltf-model>
 
       <!-- floor-->
       <a-plane position="0 -5 -14" rotation="-90 0 0" width="35" height="60" color="#ccffff"></a-plane>
@@ -49,7 +49,7 @@
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#24b8ff"></a-plane>
 
       <!-- Tafel -->
-      <a-obj-model id="js--tafel" src="#tafel-obj" mtl="#tafel-mtl" rotation="0 -90 0" position="0 0 -2.5"></a-obj-model>
+      <a-gltf-model src="Assets/Tafel.glb" rotation="0 -90 0" position="0 0 -2.5"></a-gltf-model>
 
     </a-scene>
   </body>
