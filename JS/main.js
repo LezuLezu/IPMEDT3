@@ -1,4 +1,5 @@
 window.onload = () => {
+<<<<<<< HEAD
   const testDoos = document.getElementById('js--doos');
   const display = document.getElementById('js--displayBox');
   const inhoud = ["Hallo welkom \n bij onze \n VR practicum", "Item2", "Item3"];
@@ -24,7 +25,7 @@ window.onload = () => {
 
 
   console.log("Hallo daar");
-
+=======
   console.log("JS connected");
 
   // fetching elements
@@ -49,5 +50,5 @@ window.onload = () => {
     });
   }
 
-
+>>>>>>> e4ef3a9e5a8a1542f2e0c86f00a8ea1626b4e25d
 }
