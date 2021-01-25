@@ -1,72 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<<<<<<< HEAD
-
-<head>
-  <meta charset="utf-8">
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <script type="text/javascript" src="./JS/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=2Z20Z19s"></script>
-  <title>LabVeiligheid</title>
-</head>
-
-<body>
-  <a-scene id="js--scene">
-    <a-assets>
-      <a-asset-item id="petriSchaal_Inhoud-obj" src="assets/BlenderModellen/petriSchaal_Inhoud.obj"></a-asset-item>
-      <a-asset-item id="petriSchaal_Inhoud-mtl" src="assets/BlenderModellen/petriSchaal_Inhoud.mtl"></a-asset-item>
-      <a-asset-item id="petriSchaal-obj" src="assets/BlenderModellen/petriSchaal.obj"></a-asset-item>
-      <a-asset-item id="petriSchaal-mtl" src="assets/BlenderModellen/petriSchaal.mtl"></a-asset-item>
-
-    </a-assets>
-    <a-camera id="js--camera" wasd-controls="acceleration:800">
-      <a-entity cursor="fuse: true; fuseTimeout: 2000" material="color: black; shader: flat" geometry="primitive: ring; radiusInner: 0.007; radiusOuter: 0.01" position="0 0 -0.5"></a-entity>
-    </a-camera>
-
-
-
-    <a-obj-model src="#petriSchaal-obj" mtl="#petriSchaal-mtl" position="0 0 0"></a-obj-model>
-    <a-obj-model src="#petriSchaal_Inhoud-obj" mtl="#petriSchaal_Inhoud-mtl" position="0 0 5"></a-obj-model>
-
-    <!-- floor-->
-    <a-plane position="0 -5 -14" rotation="-90 0 0" width="35" height="60" color="#ccffff"></a-plane>
-    <!-- ceiling-->
-    <a-plane position="0 18 -14" rotation="90 0 0" width="40" height="60" color="#ccffff"></a-plane>
-
-    <!-- walls -->
-    <!-- backside -->
-    <!-- PRESENTATIE -->
-    <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff">
-      <a-image id="js--afvalBak" position="2 -8.5 0.1" src="assets/Images/Emmer+zak.png" scale="10 10 1" opacity="0" ></a-image>
-
-      <a-text id="js--displayBox" position="-8 0 0.1" text="value: Welkom bij \n het VR lab!;
-                                color: black" scale="15 15 1"></a-text>
-
-
-<!-- BUTTON VOOR VOLGENDE TEKST -->
-      <a-box id="js--doos" color="red" position="-13 0 0.1" depth="1" height="2" width="6" animation="property: position; dir: alternate; dur: 1000;
-                                     easing: easeInSine; loop: true; to: -13 0.3 0">
-
-        <a-text position="-2.5 0 0.8" text="value: klik hier; color: black" scale="7 7 1"></a-text>
-      </a-box>
-    </a-plane>
-
-
-    <!-- right side -->
-    <a-plane position="18 9 -14" rotation="0 -90 0" width="60" height="30" color="#24b8ff"></a-plane>
-    <!-- left side -->
-    <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#24b8ff"></a-plane>
-    <!-- front end -> behind camera -->
-    <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#24b8ff"></a-plane>
-
-
-
-
-  </a-scene>
-</body>
-
-=======
   <head>
     <meta charset="utf-8">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
@@ -100,6 +33,10 @@
       <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="7 -1 -7"></a-cylinder>
 
 
+
+
+
+
     <!-- 3d objects -->
       <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
       <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
@@ -127,5 +64,4 @@
 
     </a-scene>
   </body>
->>>>>>> e4ef3a9e5a8a1542f2e0c86f00a8ea1626b4e25d
 </html>
