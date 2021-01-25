@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<<<<<<< HEAD
 
 <head>
   <meta charset="utf-8">
@@ -66,62 +65,4 @@
   </a-scene>
 </body>
 
-=======
-  <head>
-    <meta charset="utf-8">
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script type="text/javascript" src="./JS/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <title>LabVeiligheid</title>
-  </head>
-  <body>
-    <a-scene id="js--scene">
-      <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:100">
-        <a-entity id="js--cursor"
-        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
-        animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-        cursor = "fuse: true; fuseTimeout: 2000"
-        material = "color: black; shader: flat"
-        geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
-        position = "0 0 -0.5"
-        raycaster = "objects: .js--interact"
-      ></a-entity>
-      </a-camera>
-      <!-- Movement positions -->
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
-
-
-
-    <!-- 3d objects -->
-      <a-gltf-model src="Assets/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
-      <a-gltf-model src="Assets/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
-      <a-gltf-model src="Assets/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
-      <!-- Tafel -->
-      <a-gltf-model src="Assets/Tafel.glb" rotation="0 -90 0" position="0 0 -8"></a-gltf-model>
-
-
-
-
-      <!-- floor-->
-      <a-plane position="0 -5 -14" rotation="-90 0 0" width="35" height="60" color="#ccffff"></a-plane>
-      <!-- ceiling-->
-      <a-plane position="0 18 -14" rotation="90 0 0" width="40" height="60" color="#ccffff"></a-plane>
-
-      <!-- walls -->
-      <!-- backside -->
-      <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff"></a-plane>
-      <!-- right side -->
-      <a-plane position="18 9 -14" rotation="0 -90 0" width="60" height="30" color="#24b8ff"></a-plane>
-      <!-- left side -->
-      <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#24b8ff"></a-plane>
-      <!-- front end -> behind camera -->
-      <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#24b8ff"></a-plane>
-
-    </a-scene>
-  </body>
->>>>>>> e4ef3a9e5a8a1542f2e0c86f00a8ea1626b4e25d
 </html>
