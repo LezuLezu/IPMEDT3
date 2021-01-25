@@ -9,30 +9,35 @@
   </head>
   <body>
     <a-scene id="js--scene">
-
       <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:100">
-
-      <!-- <a-assets>
-        <a-asset-item id="petriSchaal_Inhoud-obj" src="Assets/BlenderModellen/petriSchaal_Inhoud.obj"></a-asset-item>
-        <a-asset-item id="petriSchaal_Inhoud-mtl" src="Assets/BlenderModellen/petriSchaal_Inhoud.mtl"></a-asset-item>
-        <a-asset-item id="petriSchaal-obj" src="Assets/BlenderModellen/petriSchaal.obj"></a-asset-item>
-        <a-asset-item id="petriSchaal-mtl" src="Assets/BlenderModellen/petriSchaal.mtl"></a-asset-item>
-      </a-assets> -->
-
-        <a-entity
-          cursor = "fuse: true; fuseTimeout: 2000"
-          material = "color: black; shader: flat"
-          geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
-          position = "0 0 -0.5"
-        ></a-entity>
-
+        <a-entity id="js--cursor"
+        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
+        animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+        cursor = "fuse: true; fuseTimeout: 2000"
+        material = "color: black; shader: flat"
+        geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+        position = "0 0 -0.5"
+        raycaster = "objects: .js--interact"
+      ></a-entity>
       </a-camera>
+      <!-- Movement positions -->
+      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
+      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
+      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
+      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
 
-      <!-- <a-obj-model src="#petriSchaal-obj" mtl="#petriSchaal-mtl" position="0 0 0"></a-obj-model>
-      <a-obj-model src="#petriSchaal_Inhoud-obj" mtl="#petriSchaal_Inhoud-mtl" position="0 0 5"></a-obj-model> -->
-      <a-gltf-model src="Assets/BlenderModellen/petriSchaal.glb" position="0 1.1 -2.5" scale="0.15 0.15 0.15"></a-gltf-model>
-      <a-gltf-model src="Assets/BlenderModellen/petriSchaal_Inhoud.glb" position="1 1.1 -2.5" scale="0.15 0.15 0.15"></a-gltf-model>
-      <a-gltf-model src="Assets/BlenderModellen/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -2.5"></a-gltf-model>
+
+
+    <!-- 3d objects -->
+      <a-gltf-model src="Assets/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
+      <a-gltf-model src="Assets/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
+      <a-gltf-model src="Assets/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
+      <!-- Tafel -->
+      <a-gltf-model src="Assets/Tafel.glb" rotation="0 -90 0" position="0 0 -8"></a-gltf-model>
+
+
+
 
       <!-- floor-->
       <a-plane position="0 -5 -14" rotation="-90 0 0" width="35" height="60" color="#ccffff"></a-plane>
@@ -48,9 +53,6 @@
       <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#24b8ff"></a-plane>
       <!-- front end -> behind camera -->
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#24b8ff"></a-plane>
-
-      <!-- Tafel -->
-      <a-gltf-model src="Assets/Tafel.glb" rotation="0 -90 0" position="0 0 -2.5"></a-gltf-model>
 
     </a-scene>
   </body>
