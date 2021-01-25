@@ -1,5 +1,8 @@
 window.onload = () => {
-<<<<<<< HEAD
+  console.log("JS connected");
+  
+//   whiteboard code
+//     fetch needed elements
   const testDoos = document.getElementById('js--doos');
   const display = document.getElementById('js--displayBox');
   const inhoud = ["Hallo welkom \n bij onze \n VR practicum", "Item2", "Item3"];
@@ -22,4 +25,85 @@ window.onload = () => {
     responsiveVoice.speak(inhoud[index], "Dutch Male");
 
   }
+// end whiteboard code
+ 
+
+  // fetching elements
+  const cursor = document.getElementById("js--cursor");
+  const places = document.getElementsByClassName("js--place");
+  let scene = document.getElementById("js--scene");
+  const position = document.getElementsByClassName("js--position");
+  const camera = document.getElementById("js--camera");
+
+  // bewegen
+  function pythagoras(x1, z1, x2, z2) {
+    return Math.sqrt( Math.pow(x1 - x2, 2) + Math.pow(z1 - z2, 2) )
+  }
+  for (let i = 0; i < places.length; i++) {
+    places[i].addEventListener('click', function(evt){
+      let att = document.createAttribute("animation");
+      let camera_position = camera.getAttribute('position');
+      let box_position = this.getAttribute('position');
+      let duration = pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) * 333;
+      att.value = "property: position; easing: linear; dur: " + duration + "; to: " + this.getAttribute('position').x + " 1.6 " + this.getAttribute('position').z;
+      camera.setAttribute('animation', att.value);
+    });
+  }
+  // Pickup items
+  let pickups = document.getElementsByClassName('js--pickup');
+  let hold = null;
+  let source = null;
+  let scaleX  = null;
+  let scaleY = null;
+  let scaleZ = null;
+  const placeholders = document.getElementsByClassName('js--placeholder');
+
+  function addListeners() {
+      for (let i = 0; i < pickups.length; i++) {
+        pickups[i].addEventListener('click', function(evt){
+          if (hold == null) {
+            let camera_position = camera.getAttribute('position');
+            let box_position = this.getAttribute('position');
+            source = pickups[i].getAttribute('src');
+            scaleX= pickups[i].getAttribute('scale').x;
+            scaleY = pickups[i].getAttribute('scale').y;
+            scaleZ = pickups[i].getAttribute('scale').z;
+            console.log("X"+scaleX);
+            console.log("Y"+scaleY);
+            console.log("Z"+scaleZ);
+            if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
+              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
+                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="1 -1 -1.5"></a-gltf-model>';
+              hold = "hold";
+              this.remove();
+
+            }
+          }
+        });
+      }
+    }
+
+    addListeners();
+
+    for (let i = 0; i < placeholders.length; i++) {
+      placeholders[i].addEventListener('click', function(evt){
+        console.log(source);
+
+        if (hold == "hold"){
+          let item = document.createElement('a-gltf-model');
+          item.setAttribute("src", source);
+          item.setAttribute("class", "js--pickup js--interact");
+          item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
+          item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
+          scene.appendChild(item);
+          document.getElementById("js--hold").remove();
+          addListeners();
+          hold = null;
+          source = null;
+
+        }
+      });
+    }
+
+
 }
