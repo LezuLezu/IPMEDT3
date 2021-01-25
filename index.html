@@ -20,9 +20,9 @@
         geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
         position = "0 0 -0.5"
         raycaster = "objects: .js--interact"
-      ></a-entity>        
+      ></a-entity>
       </a-camera>
-      
+
       <!-- Movement positions -->
       <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
       <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
@@ -52,13 +52,13 @@
 
 
 <!-- BUTTON VOOR VOLGENDE TEKST -->
-      <a-box id="js--doos" color="red" position="-13 0 0.1" depth="1" height="2" width="6" animation="property: position; dir: alternate; dur: 1000;
+      <a-box class="js--interact" id="js--doos" color="red" position="-13 0 0.1" depth="1" height="2" width="6" animation="property: position; dir: alternate; dur: 1000;
                                      easing: easeInSine; loop: true; to: -13 0.3 0">
 
         <a-text position="-2.5 0 0.8" text="value: klik hier; color: black" scale="7 7 1"></a-text>
       </a-box>
     </a-plane>
-      
+
       <!-- Enviroment -->
       <!-- floor-->
       <a-plane position="0 -5 -14" rotation="-90 0 0" width="35" height="60" color="#ccffff"></a-plane>
