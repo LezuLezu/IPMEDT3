@@ -6,7 +6,7 @@ window.onload = () => {
 //     fetch needed elements
   const testDoos = document.getElementById('js--doos');
   const display = document.getElementById('js--displayBox');
-  const inhoud = ["Hallo welkom bij onze VR \n experience. Deze VR room \n gaat je helpen beter leren om te \n gaan met verschillende \n veiligheidsregels van het chemie \n lab op de Hogeschool Leiden", "Item2", "Item3"];
+  const inhoud = ["Hallo welkom bij onze VR \n experience. Deze VR room \n gaat je helpen beter leren om te gaan \n met verschillende veiligheidsregels \n van het chemie lab op de Hogeschool \n Leiden", "Item2", "Item3"];
   const afvalBak = document.getElementById('js--afvalBak');
 
   let index = 0;
@@ -29,8 +29,8 @@ window.onload = () => {
   }
 // end whiteboard code
 
-function spreek(){
-  responsiveVoice.speak("Je hebt nu het object opgepakt. Weet je waar die naar toe moet?" , "Dutch Female");
+function spreek(object){
+  responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?" , "Dutch Female");
 }
 
 
@@ -63,6 +63,10 @@ function spreek(){
   let scaleX  = null;
   let scaleY = null;
   let scaleZ = null;
+  let huidigObject = null;
+  const petriS = document.getElementById('js--petriSchaal');
+  const petriInhoud = document.getElementById('js--petriSchaal_Inhoud');
+  const reageerBuis = document.getElementById('js--reageerBuis');
   const placeholders = document.getElementsByClassName('js--placeholder');
 
   function addListeners() {
@@ -78,7 +82,22 @@ function spreek(){
             console.log("X"+scaleX);
             console.log("Y"+scaleY);
             console.log("Z"+scaleZ);
-            spreek();
+            switch(pickups[i].getAttribute("id")){
+              case "js--petriSchaal":
+                console.log("petriS");
+                spreek("petrischaal");
+                break;
+              case "js--reageerBuis":
+                console.log("reageerBuis");
+                spreek("reageerbuis");
+                break;
+              case "js--petriSchaal_Inhoud":
+                console.log("petriInhoud");
+                spreek("petriSchaal met inhoud");
+                break;
+            }
+
+            console.log(pickups[i]);
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
               camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
                 source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="1 -1 -1.5"></a-gltf-model>';
