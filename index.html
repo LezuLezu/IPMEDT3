@@ -11,7 +11,7 @@
   </head>
   <body>
     <a-scene id="js--scene">
-        <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:100">
+        <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:800">
           <a-entity id="js--cursor"
           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
@@ -30,28 +30,32 @@
         <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
         <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
 
-        <!-- temporary placeholders -->
-        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-6 -1 -7"></a-cylinder>
-        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-4 -1 -4"></a-cylinder>
-        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="7 -1 -7"></a-cylinder>
+        <!-- placeholders -->
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" class="js--placeholder js--interact" position="-6 -0.5 -7" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer met zak.glb" class="js--placeholder js--interact" position="-4 -0.5 -4" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Plastic bak.glb" class="js--placeholder js--interact" position="7 -0.75 -7" rotation="0 120 0" scale="0.5 0.5 0.5"></a-gltf-model>
 
 
     <!-- 3d objects -->
-      <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
-      <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
-      <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal_Inhoud" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--reageerBuis" src="Assets/Models/glbFiles/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
+      <!-- WHITEBOARD -->
+      <a-gltf-model src="Assets/Models/glbFiles/Bord.glb" rotation="0 -90 0" scale="4 4 4" position="3 2 -28">
+        <a-image id="js--afvalBak" position="2 -8.5 0.1" src="assets/Images/Emmer+zak.png" scale="10 10 0.1" opacity="0" ></a-image>
+
+        <a-text id="js--displayBox" position="0.1 2.3 3" rotation="0 90 0" text="value: Welkom bij \n het VR lab!;
+                                  color: black" scale="1.5 1.5 1"></a-text>
+      </a-gltf-model>
       <!-- Tafel -->
       <a-gltf-model src="Assets/Models/glbFiles/Tafel.glb" rotation="0 -90 0" position="0 0 -8"></a-gltf-model>
       <!-- coatrack -->
       <a-gltf-model src="Assets/Models/glbFiles/coatRack.glb"  rotation="0 90 0" position="17.5 4.5 8.5"></a-gltf-model>
 
-  <!-- Whiteboard -->
+
   <!-- PRESENTATIE -->
       <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff">
-        <a-image id="js--afvalBak" position="2 -8.5 0.1" src="assets/Images/Emmer+zak.png" scale="10 10 0.1" opacity="0" ></a-image>
 
-        <a-text id="js--displayBox" position="-9 2 0.1" text="value: Welkom bij \n het VR lab!;
-                                  color: black" scale="8 8 1"></a-text>
 
 
   <!-- BUTTON VOOR VOLGENDE TEKST -->
@@ -92,6 +96,7 @@
       <a-plane position="18 9 -14" rotation="0 -90 0" width="60" height="30" color="#7cd4ff"></a-plane>
       <!-- left side -->
       <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#7cd4ff"></a-plane>
+      <a-image src="Assets/Images/periodiek_systeem.png" position="-17.9 6 -14" rotation="0 90 0" width="9" height="6"></a-image>
       <!-- front end -> behind camera -->
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#5bcaff"></a-plane>
 
