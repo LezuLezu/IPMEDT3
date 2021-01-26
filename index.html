@@ -6,35 +6,44 @@
     <script type="text/javascript" src="./JS/main.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=2Z20Z19s"></script>
+
     <title>LabVeiligheid</title>
   </head>
   <body>
     <a-scene id="js--scene">
-      <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:100">
-        <a-entity id="js--cursor"
-        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
-        animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-        cursor = "fuse: true; fuseTimeout: 2000"
-        material = "color: black; shader: flat"
-        geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
-        position = "0 0 -0.5"
-        raycaster = "objects: .js--interact"
-      ></a-entity>
-      </a-camera>
+        <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:100">
+          <a-entity id="js--cursor"
+          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
+          animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+          cursor = "fuse: true; fuseTimeout: 2000"
+          material = "color: black; shader: flat"
+          geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+          position = "0 0 -0.5"
+          raycaster = "objects: .js--interact"
+        ></a-entity>
+        </a-camera>
 
-      <!-- Movement positions -->
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
-      <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
+        <!-- Movement positions -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
 
-      <!-- temporary placeholders -->
-      <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-6 -1 -7"></a-cylinder>
-      <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-4 -1 -4"></a-cylinder>
-      <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="7 -1 -7"></a-cylinder>
+        <!-- temporary placeholders -->
+        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-6 -1 -7"></a-cylinder>
+        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-4 -1 -4"></a-cylinder>
+        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="7 -1 -7"></a-cylinder>
 
 
+<<<<<<< HEAD
+      <!-- 3d objects -->
+        <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
+        <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
+        <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
+        <!-- Tafel -->
+        <a-gltf-model src="Assets/Models/glbFiles/Tafel.glb" rotation="0 -90 0" position="0 0 -8"></a-gltf-model>
+=======
     <!-- 3d objects -->
       <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
       <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
@@ -44,24 +53,42 @@
       <!-- coatrack -->
       <a-gltf-model src="Assets/Models/glbFiles/coatRack.glb"  rotation="0 90 0" position="17.5 4.5 8.5"></a-gltf-model>
 
+>>>>>>> 8f4b6e153914eb75266c01304feb99098843d6db
 
-<!-- Whiteboard -->
-<!-- PRESENTATIE -->
-    <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff">
-      <a-image id="js--afvalBak" position="2 -8.5 0.1" src="assets/Images/Emmer+zak.png" scale="10 10 1" opacity="0" ></a-image>
+  <!-- Whiteboard -->
+  <!-- PRESENTATIE -->
+      <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff">
+        <a-image id="js--afvalBak" position="2 -8.5 0.1" src="assets/Images/Emmer+zak.png" scale="10 10 0.1" opacity="0" ></a-image>
 
-      <a-text id="js--displayBox" position="-8 0 0.1" text="value: Welkom bij \n het VR lab!;
-                                color: black" scale="15 15 1"></a-text>
+        <a-text id="js--displayBox" position="-9 2 0.1" text="value: Welkom bij \n het VR lab!;
+                                  color: black" scale="8 8 1"></a-text>
 
 
-<!-- BUTTON VOOR VOLGENDE TEKST -->
-      <a-box class="js--interact" id="js--doos" color="red" position="-13 0 0.1" depth="1" height="2" width="6" animation="property: position; dir: alternate; dur: 1000;
-                                     easing: easeInSine; loop: true; to: -13 0.3 0">
+  <!-- BUTTON VOOR VOLGENDE TEKST -->
+        <a-box class="js--interact" id="js--doos" color="red" position="-13 0 0.1" depth="1" height="2" width="6" animation="property: position; dir: alternate; dur: 1000;
+                                       easing: easeInSine; loop: true; to: -13 0.3 0">
 
-        <a-text position="-2.5 0 0.8" text="value: klik hier; color: black" scale="7 7 1"></a-text>
-      </a-box>
-    </a-plane>
+          <a-text position="-2.5 0 0.8" text="value: klik hier; color: black" scale="7 7 1"></a-text>
+        </a-box>
+      </a-plane>
 
+<<<<<<< HEAD
+        <!-- Enviroment -->
+        <!-- floor-->
+        <a-plane position="0 -1 -14" rotation="-90 0 0" width="35" height="60" color="ccffff"></a-plane>
+        <!-- ceiling-->
+        <a-plane position="0 18 -14" rotation="90 0 0" width="40" height="60" color="#ccffff"></a-plane>
+
+        <!-- walls -->
+        <!-- backside -->
+        <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff"></a-plane>
+        <!-- right side -->
+        <a-plane position="18 9 -14" rotation="0 -90 0" width="60" height="30" color="#24b8ff"></a-plane>
+        <!-- left side -->
+        <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#24b8ff"></a-plane>
+        <!-- front end -> behind camera -->
+        <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#24b8ff"></a-plane>
+=======
       <!-- Enviroment -->
       <!-- door -->
       <a-plane position="9 -3 14.9" rotation="0 180 0" width="5" height="18" color="#a8422b"></a-plane>
@@ -95,7 +122,8 @@
       <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#7cd4ff"></a-plane>
       <!-- front end -> behind camera -->
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#5bcaff"></a-plane>
+>>>>>>> 8f4b6e153914eb75266c01304feb99098843d6db
 
-    </a-scene>
-  </body>
-</html>
+      </a-scene>
+    </body>
+  </html>

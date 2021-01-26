@@ -1,12 +1,14 @@
 window.onload = () => {
   console.log("JS connected");
-  
+
+
 //   whiteboard code
 //     fetch needed elements
   const testDoos = document.getElementById('js--doos');
   const display = document.getElementById('js--displayBox');
-  const inhoud = ["Hallo welkom \n bij onze \n VR practicum", "Item2", "Item3"];
+  const inhoud = ["Hallo welkom bij onze VR \n experience. Deze VR room \n gaat je helpen beter leren om te \n gaan met verschillende \n veiligheidsregels van het chemie \n lab op de Hogeschool Leiden", "Item2", "Item3"];
   const afvalBak = document.getElementById('js--afvalBak');
+
   let index = 0;
 
   function laatTextZien(getal) {
@@ -22,11 +24,16 @@ window.onload = () => {
     }, 2000);
 
 
-    responsiveVoice.speak(inhoud[index], "Dutch Male");
+    responsiveVoice.speak(inhoud[index], "Dutch Female");
 
   }
 // end whiteboard code
- 
+
+function spreek(){
+  responsiveVoice.speak("Je hebt nu het object opgepakt. Weet je waar die naar toe moet?" , "Dutch Female");
+}
+
+
 
   // fetching elements
   const cursor = document.getElementById("js--cursor");
@@ -71,6 +78,7 @@ window.onload = () => {
             console.log("X"+scaleX);
             console.log("Y"+scaleY);
             console.log("Z"+scaleZ);
+            spreek();
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
               camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
                 source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="1 -1 -1.5"></a-gltf-model>';
