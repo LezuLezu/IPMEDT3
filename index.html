@@ -30,10 +30,10 @@
         <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
         <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
 
-        <!-- temporary placeholders -->
-        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-6 -1 -7"></a-cylinder>
-        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="-4 -1 -4"></a-cylinder>
-        <a-cylinder class="js--placeholder js--interact" color="red" radius="0.5" height="0.01" position="7 -1 -7"></a-cylinder>
+        <!-- placeholders -->
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" class="js--placeholder js--interact" position="-6 -0.5 -7" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer met zak.glb" class="js--placeholder js--interact" position="-4 -0.5 -4" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Plastic bak.glb" class="js--placeholder js--interact" position="7 -0.75 -7" rotation="0 120 0" scale="0.5 0.5 0.5"></a-gltf-model>
 
     <!-- 3d objects -->
       <a-gltf-model class="js--pickup js--interact" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
@@ -89,6 +89,7 @@
       <a-plane position="18 9 -14" rotation="0 -90 0" width="60" height="30" color="#7cd4ff"></a-plane>
       <!-- left side -->
       <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#7cd4ff"></a-plane>
+      <a-image src="Assets/Images/periodiek_systeem.png" position="-17.9 6 -14" rotation="0 90 0" width="9" height="6"></a-image>
       <!-- front end -> behind camera -->
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#5bcaff"></a-plane>
 
