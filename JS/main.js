@@ -4,9 +4,14 @@ window.onload = () => {
 
 //   whiteboard code
 //     fetch needed elements
-  const testDoos = document.getElementById('js--doos');
+  const volgende = document.getElementById('js--volgendeSlide');
+  const vorige = document.getElementById('js--vorigeSlide')
   const display = document.getElementById('js--displayBox');
-  const inhoud = ["Hallo welkom bij onze VR \n experience. Deze VR room \n gaat je helpen beter leren om te gaan \n met verschillende veiligheidsregels \n van het chemie lab op de Hogeschool \n Leiden", "Item2", "Item3"];
+  const inhoud = ["Hallo welkom bij onze VR experience. Deze VR room gaat je helpen beter leren om te gaan met verschillende veiligheidsvoorschriften van het chemie lab op de Hogeschool Leiden", 
+                  "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.", 
+                  "Je kunt de voorwerpen op de tafel oppakken door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
+                  "Zoek vervolgens de juiste afvalbak voor het voorwerp en plaats het voorwerp in de bak op dezelfde manier.",
+                  "Pak nu een voorwerp om te beginnen!"];
   const afvalBak = document.getElementById('js--afvalBak');
 
   let index = 0;
@@ -17,16 +22,35 @@ window.onload = () => {
   }
 
 
-  testDoos.onclick = (event) => {
+  volgende.onclick = (event) => {
     console.log(index);
-    setTimeout(() => {
-      laatTextZien(index), index++, afvalBak.setAttribute("opacity", 1);
-    }, 2000);
+    if(index < inhoud.length) {
+      setTimeout(() => {
+        laatTextZien(index), index++, afvalBak.setAttribute("opacity", 1);
+      }, 2000);
 
-
-    responsiveVoice.speak(inhoud[index], "Dutch Female");
+      responsiveVoice.speak(inhoud[index], "Dutch Female");
+    }
+    else {
+      console.log("lijst is leeg");
+    }
 
   }
+
+  // vorige.onclick = (event) => {
+  //   console.log(index);
+  //   if(index == 0) {
+  //     console.log("Kan niet terug")
+  //   }
+  //   else {
+  //     setTimeout(() => {
+  //       laatTextZien(index), index--, afvalBak.setAttribute("opacity", 1);
+  //     }, 2000);
+  
+  //     responsiveVoice.speak(inhoud[index], "Dutch Female");
+  //   }
+
+  // }
 // end whiteboard code
 
 function spreek(object){
@@ -75,6 +99,7 @@ function spreek(object){
           if (hold == null) {
             let camera_position = camera.getAttribute('position');
             let box_position = this.getAttribute('position');
+            let posZ = -0.4;
             source = pickups[i].getAttribute('src');
             scaleX= pickups[i].getAttribute('scale').x;
             scaleY = pickups[i].getAttribute('scale').y;
@@ -90,6 +115,7 @@ function spreek(object){
               case "js--reageerBuis":
                 console.log("reageerBuis");
                 spreek("reageerbuis");
+                posZ = posZ - 0.2
                 break;
               case "js--petriSchaal_Inhoud":
                 console.log("petriInhoud");
@@ -100,7 +126,7 @@ function spreek(object){
             console.log(pickups[i]);
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
               camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
-                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="1 -1 -1.5"></a-gltf-model>';
+                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
               hold = "hold";
               this.remove();
 
