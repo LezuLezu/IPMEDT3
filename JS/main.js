@@ -119,10 +119,10 @@ function foutObject(){
             let camera_position = camera.getAttribute('position');
             let box_position = this.getAttribute('position');
             let posZ = -0.4;
-            source = pickups[i].getAttribute('src');
-            scaleX= pickups[i].getAttribute('scale').x;
-            scaleY = pickups[i].getAttribute('scale').y;
-            scaleZ = pickups[i].getAttribute('scale').z;
+            source = this.getAttribute('src');
+            scaleX= this.getAttribute('scale').x;
+            scaleY = this.getAttribute('scale').y;
+            scaleZ = this.getAttribute('scale').z;
             console.log("X"+scaleX);
             console.log("Y"+scaleY);
             console.log("Z"+scaleZ);
@@ -143,7 +143,7 @@ function foutObject(){
             // console.log("Je hebt het volgende object gepakt: " + huidigObject);
 
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
-              switch(pickups[i].getAttribute("id")){
+              switch(this.getAttribute("id")){
                 case petriSchaal:
                   console.log("petriS");
                   spreekObject("bacterieplaat");
@@ -189,8 +189,7 @@ function foutObject(){
                   break;
               }
 
-              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
-                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
+              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--interact" src="' + source + '" scale="' + scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
               hold = "hold";
               this.remove();
 
@@ -221,8 +220,8 @@ function foutObject(){
           // item.setAttribute("class", "js--pickup js--interact");
           item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
           item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
-          // scene.appendChild(item);
-          huidigNeerzet = placeholders[i].getAttribute("id");
+          scene.appendChild(item);
+          huidigNeerzet = this.getAttribute("id");
           console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
           console.log("Je huidige object is: " + huidigObject);
 
@@ -239,68 +238,68 @@ function foutObject(){
           switch(huidigNeerzet)
           {
             case "js--emmerZak":
-              if(huidigObject != "js--petriSchaal_Inhoud")
+              if(huidigObject == "js--petriSchaal_Inhoud")
+              {
+                plaatsObject();
+                resetInfo();
+                break;
+              }
+              else
               {
                 foutObject();
                 break;
               }
-              else if(huidigObject == "js--petriSchaal_Inhoud")
-              {
-                plaatsObject();
-                break;
-              }
-              break;
 
             case "js--emmer":
-              if(huidigObject != "js--maatCylinder")
+              if(huidigObject == "js--maatCylinder")
+              {
+                plaatsObject();
+                resetInfo();
+                break;
+              }
+              else
               {
                 foutObject();
                 break;
               }
-              else if(huidigObject == "js--maatCylinder")
-              {
-                plaatsObject();
-                break;
-              }
-              break;
 
             case "js--plasticBak":
               if(huidigObject == "js--bekerGlas") {
                 plaatsObject();
+                resetInfo();
+                break;
               }
               else if(huidigObject == "js--petriSchaal") {
-                plaatsObject
+                plaatsObject();
+                resetInfo();
+                break;
               }
               else {
                 foutObject();
+                break;
               }
-              // if(huidigObject != bekerGlas || huidigObject != petriSchaal)
-              // {
-              //   foutObject();
-              // }
-              // else if(huidigObject == bekerGlas || huidigObject == petriSchaal)
-              // {
-              //   plaatsObject();
-              // }
-              break;
 
             case "js--reageerBuisMand":
-              if(huidigObject != "js--reageerBuis")
-              {
-                foutObject();
-              }
-              else if(huidigObject == "js--reageerBuis")
+              if(huidigObject == "js--reageerBuis")
               {
                 plaatsObject();
+                resetInfo();
+                break;
               }
-              break;
+              else
+              {
+                foutObject
+                break;
+              }
           }
-          displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
-          displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
-          displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
-
         }
       });
+    }
+
+    function resetInfo() {
+      displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
+      displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
+      displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
     }
 
 
