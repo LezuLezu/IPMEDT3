@@ -127,12 +127,26 @@ function spreek(object){
                 displayInfo[0].setAttribute("value", "Object: Reageerbuis");
                 displayInfo[1].setAttribute("value", "Materiaal: glas");
                 displayInfo[2].setAttribute("value", "Inhoud: geen");
-                posZ = posZ - 0.2
+                posZ = posZ - 0.4
                 break;
               case "js--petriSchaal_Inhoud":
                 console.log("petriInhoud");
                 spreek("bacterieplaat met inhoud");
                 displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
+                break;
+              case "js--maatCylinder":
+                console.log("maatcylinder");
+                spreek("maatcilinder");
+                displayInfo[0].setAttribute("value", "Object: Maatcilinder");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
+                break;
+              case "js--bekerGlas":
+                console.log("bekerglas");
+                spreek("bekerglas");
+                displayInfo[0].setAttribute("value", "Object: Bekerglas");
                 displayInfo[1].setAttribute("value", "Materiaal: glas");
                 displayInfo[2].setAttribute("value", "Inhoud: geen");
                 break;
