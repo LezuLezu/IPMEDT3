@@ -128,6 +128,7 @@ function foutObject(){
             console.log("Z"+scaleZ);
             huidigObject = pickups[i].getAttribute("id");
             console.log(huidigObject);
+
             // switch(pickups[i].getAttribute("id")){
             //   case petriSchaal:
             //     spreekObject("petrischaal");
@@ -140,6 +141,7 @@ function foutObject(){
             //     break;
             // }
             // console.log("Je hebt het volgende object gepakt: " + huidigObject);
+
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
               switch(pickups[i].getAttribute("id")){
                 case petriSchaal:
@@ -203,71 +205,91 @@ function foutObject(){
     for (let i = 0; i < placeholders.length; i++) {
       placeholders[i].addEventListener('click', function(evt){
 
-        function plaatsObject()
-        {
-          document.getElementById("js--hold").remove();
-          addListeners();
-          hold = null;
-          source = null;
-          console.log("Correcte plek!");
-          scene.appendChild(item);
-        }
+        // function plaatsObject()
+        // {
+        //   document.getElementById("js--hold").remove();
+        //   addListeners();
+        //   console.log("Correcte plek!");
+        //   scene.appendChild(item);
+        //   hold = null;
+        //   source = null;
+        // }
 
         if (hold == "hold"){
           let item = document.createElement('a-gltf-model');
           item.setAttribute("src", source);
-          item.setAttribute("class", "js--pickup js--interact");
+          // item.setAttribute("class", "js--pickup js--interact");
           item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
           item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
           // scene.appendChild(item);
           huidigNeerzet = placeholders[i].getAttribute("id");
           console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
           console.log("Je huidige object is: " + huidigObject);
+
+          function plaatsObject()
+          {
+            document.getElementById("js--hold").remove();
+            addListeners();
+            console.log("Correcte plek!");
+            scene.appendChild(item);
+            hold = null;
+            source = null;
+          }
+
           switch(huidigNeerzet)
           {
-            case emmerZak:
-              if(huidigObject != petriInhoud)
+            case "js--emmerZak":
+              if(huidigObject != "js--petriSchaal_Inhoud")
               {
                 foutObject();
                 break;
               }
-              else if(huidigObject == petriInhoud)
+              else if(huidigObject == "js--petriSchaal_Inhoud")
               {
                 plaatsObject();
                 break;
               }
               break;
 
-            case emmer:
-              if(huidigObject != maatCylinder)
+            case "js--emmer":
+              if(huidigObject != "js--maatCylinder")
               {
                 foutObject();
                 break;
               }
-              else if(huidigObject == maatCylinder)
+              else if(huidigObject == "js--maatCylinder")
               {
                 plaatsObject();
                 break;
               }
               break;
 
-            case plasticBak:
-              if(huidigObject != bekerGlas || huidigObject != petriSchaal)
-              {
-                foutObject();
-              }
-              else if(huidigObject == bekerGlas || huidigObject == petriSchaal)
-              {
+            case "js--plasticBak":
+              if(huidigObject == "js--bekerGlas") {
                 plaatsObject();
               }
+              else if(huidigObject == "js--petriSchaal") {
+                plaatsObject
+              }
+              else {
+                foutObject();
+              }
+              // if(huidigObject != bekerGlas || huidigObject != petriSchaal)
+              // {
+              //   foutObject();
+              // }
+              // else if(huidigObject == bekerGlas || huidigObject == petriSchaal)
+              // {
+              //   plaatsObject();
+              // }
+              break;
 
-
-            case reageerMand:
-              if(huidigObject != reageerBuis)
+            case "js--reageerBuisMand":
+              if(huidigObject != "js--reageerBuis")
               {
                 foutObject();
               }
-              else if(huidigObject == reageerBuis)
+              else if(huidigObject == "js--reageerBuis")
               {
                 plaatsObject();
               }
