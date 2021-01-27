@@ -128,17 +128,17 @@ function foutObject(){
             console.log("Z"+scaleZ);
             huidigObject = pickups[i].getAttribute("id");
             console.log(huidigObject);
-            switch(pickups[i].getAttribute("id")){
-              case petriSchaal:
-                spreekObject("petrischaal");
-                break;
-              case reageerBuis:
-                spreekObject("reageerbuis");
-                break;
-              case petriInhoud:
-                spreekObject("petriSchaal met inhoud");
-                break;
-            }
+            // switch(pickups[i].getAttribute("id")){
+            //   case petriSchaal:
+            //     spreekObject("petrischaal");
+            //     break;
+            //   case reageerBuis:
+            //     spreekObject("reageerbuis");
+            //     break;
+            //   case petriInhoud:
+            //     spreekObject("petriSchaal met inhoud");
+            //     break;
+            // }
             // console.log("Je hebt het volgende object gepakt: " + huidigObject);
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
               switch(pickups[i].getAttribute("id")){
@@ -256,7 +256,7 @@ function foutObject(){
               {
                 foutObject();
               }
-              else if(huidigObject == bekerGlas || huidigObject != petriSchaal)
+              else if(huidigObject == bekerGlas || huidigObject == petriSchaal)
               {
                 plaatsObject();
               }
