@@ -34,24 +34,34 @@
         </a-camera>
 
         <!-- Movement positions -->
-        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
-        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
-        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
-        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
+        <!-- Start position -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="0 -4.9 0"></a-cylinder>
+        <!-- infront of table -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="0 -4.9 -10"></a-cylinder>
+        <!-- next to buckets -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="-10 -4.9 -8"></a-cylinder>
+        <!-- next to washdish -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="12 -4.9 -6"></a-cylinder>
+        <!-- left of table -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="-9 -4.9 -15"></a-cylinder>
+        <!-- right of table -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="9 -4.9 -15"></a-cylinder>
+
+
 
         <!-- placeholders -->
-        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" class="js--placeholder js--interact" position="-6 -0.5 -7" scale="0.5 0.5 0.5"></a-gltf-model>
-        <a-gltf-model src="Assets/Models/glbfiles/Emmer_met_zak.glb" class="js--placeholder js--interact" position="-4 -0.5 -4" scale="0.5 0.5 0.5"></a-gltf-model>
-        <a-gltf-model src="Assets/Models/glbfiles/PlasticBak.glb" class="js--placeholder js--interact" position="7 -0.75 -7" rotation="0 120 0" scale="0.5 0.5 0.5"></a-gltf-model>
-        <a-gltf-model src="Assets/Models/glbFiles/Reageerbuismand.glb" class="js--placeholder js--interacht" position="-2.5 1.2 -8.5" scale="0.25 0.25 0.25" rotation="0 220 0"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" class="js--placeholder js--interact" position="-14 -3.8 -10" scale="1.1 1.1 1.1"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer_met_zak.glb" class="js--placeholder js--interact" position="-14 -3.8 -7" scale="1.1 1.1 1.1"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/PlasticBak.glb" class="js--placeholder js--interact" position="14 -3.8 -7.5" rotation="0 120 0" scale="1.1 1.1 1.1"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbFiles/Reageerbuismand.glb" class="js--placeholder js--interacht" position="-5 0.4 -15" scale="0.5 0.5 0.5" rotation="0 220 0"></a-gltf-model>
 
     <!-- 3d objects -->
       <!-- Grabable objects -->
-      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
-      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal_Inhoud" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
-      <a-gltf-model class="js--pickup js--interact" id="js--reageerBuis" src="Assets/Models/glbFiles/Reageerbuis.glb" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
-      <a-gltf-model class="js--pickup js--interacht" id="js--maatCylinder" src="Assets/Models/glbFiles/maatcylinder.glb" scale="0.05 0.05 0.05" position="-2 1.05 -7.5"></a-gltf-model>
-      <a-gltf-model class="js--pickup js--interact" id="js--bekerGlas" src="Assets/Models/glbFiles/Bekerglaasje2.glb" scale="0.125 0.125 0.125" position="-0.75 1.2 -7.75"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.30 0.30 0.30"  position="0 0.2 -12.5" ></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal_Inhoud" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.30 0.30 0.30" position="1 0.2 -12.5"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--reageerBuis" src="Assets/Models/glbFiles/Reageerbuis.glb" scale="0.075 0.1125 0.075" position="-1 0.2 -13"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interacht" id="js--maatCylinder" src="Assets/Models/glbFiles/maatcylinder.glb" scale="0.1 0.1 0.1" position="-2 0.2 -14"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--bekerGlas" src="Assets/Models/glbFiles/Bekerglaasje2.glb" scale="0.25 0.25 0.25" position="-3 0.5 -13.75"></a-gltf-model>
 
       <!-- WHITEBOARD -->
       <a-gltf-model src="Assets/Models/glbFiles/Bord.glb" rotation="0 -90 0" scale="4 4 4" position="0 2 -28">
@@ -61,7 +71,7 @@
                                   color: black" scale="1.5 1.5 1" width="4"></a-text>
       </a-gltf-model>
       <!-- Tafel -->
-      <a-gltf-model src="Assets/Models/glbFiles/Tafel.glb" rotation="0 -90 0" position="0 0 -8"></a-gltf-model>
+      <a-gltf-model src="Assets/Models/glbFiles/Tafel.glb" rotation="0 -90 0" scale="2 2 2" position="0 -2 -14"></a-gltf-model>
       <!-- coatrack -->
       <a-gltf-model src="Assets/Models/glbFiles/coatRack.glb"  rotation="0 90 0" position="17.5 4.5 8.5"></a-gltf-model>
 
