@@ -4,9 +4,14 @@ window.onload = () => {
 
 //   whiteboard code
 //     fetch needed elements
-  const testDoos = document.getElementById('js--doos');
+  const volgende = document.getElementById('js--volgendeSlide');
+  const vorige = document.getElementById('js--vorigeSlide')
   const display = document.getElementById('js--displayBox');
-  const inhoud = ["Hallo welkom bij onze VR \n experience. Deze VR room \n gaat je helpen beter leren om te gaan \n met verschillende veiligheidsregels \n van het chemie lab op de Hogeschool \n Leiden", "Item2", "Item3"];
+  const inhoud = ["Hallo welkom bij onze VR experience. Deze VR room gaat je helpen beter leren om te gaan met verschillende veiligheidsvoorschriften van het chemie lab op de Hogeschool Leiden",
+                  "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.",
+                  "Je kunt de voorwerpen op de tafel oppakken door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
+                  "Zoek vervolgens de juiste afvalbak voor het voorwerp en plaats het voorwerp in de bak op dezelfde manier.",
+                  "Pak nu een voorwerp om te beginnen!"];
   const afvalBak = document.getElementById('js--afvalBak');
 
   let index = 0;
@@ -17,19 +22,38 @@ window.onload = () => {
   }
 
 
-  testDoos.onclick = (event) => {
+  volgende.onclick = (event) => {
     console.log(index);
-    setTimeout(() => {
-      laatTextZien(index), index++, afvalBak.setAttribute("opacity", 1);
-    }, 2000);
+    if(index < inhoud.length) {
+      setTimeout(() => {
+        laatTextZien(index), index++, afvalBak.setAttribute("opacity", 1);
+      }, 2000);
 
-
-    responsiveVoice.speak(inhoud[index], "Dutch Female");
+      responsiveVoice.speak(inhoud[index], "Dutch Female");
+    }
+    else {
+      console.log("lijst is leeg");
+    }
 
   }
+
+  // vorige.onclick = (event) => {
+  //   console.log(index);
+  //   if(index == 0) {
+  //     console.log("Kan niet terug")
+  //   }
+  //   else {
+  //     setTimeout(() => {
+  //       laatTextZien(index), index--, afvalBak.setAttribute("opacity", 1);
+  //     }, 2000);
+
+  //     responsiveVoice.speak(inhoud[index], "Dutch Female");
+  //   }
+
+  // }
 // end whiteboard code
 
-function spreek(object){
+function spreekObject(object){
   responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?" , "Dutch Female");
 }
 
@@ -60,6 +84,10 @@ function foutObject(){
       camera.setAttribute('animation', att.value);
     });
   }
+
+  // Display
+  let displayInfo = document.getElementsByClassName("js--info");
+
   // Pickup items
   let pickups = document.getElementsByClassName('js--pickup');
   let hold = null;
@@ -71,13 +99,18 @@ function foutObject(){
   let huidigObject = null;
   let huidigNeerzet = null;
 
-  const petriSchaal = document.getElementById('js--petriSchaal').getAttribute("id");
-  const petriInhoud = document.getElementById('js--petriSchaal_Inhoud').getAttribute("id");
-  const reageerBuis = document.getElementById('js--reageerBuis').getAttribute("id");
+  const petriSchaal = document.getElementById('js--petriSchaal').getAttribute("id"); //plastic bak
+  const petriInhoud = document.getElementById('js--petriSchaal_Inhoud').getAttribute("id"); //emmer met zak
+  const reageerBuis = document.getElementById('js--reageerBuis').getAttribute("id"); //reageerbuismand
+  const maatCylinder = document.getElementById('js--maatCylinder').getAttribute("id"); //emmer zonder zak
+  const bekerGlas = document.getElementById('js--bekerGlas').getAttribute("id"); //plastic bak
+  const pipet = document.getElementById('js--pipet').getAttribute("id"); // onbekend
+
   const placeholders = document.getElementsByClassName('js--placeholder');
   const emmerZak = document.getElementById('js--emmerZak').getAttribute("id"); //besmette bactierplaat gaat hier in, petris met stip
   const emmer = document.getElementById('js--emmer'); //besmet glaswerk
   const plasticBak = document.getElementById('js--plasticBak'); //gebruikt niet besmet glas
+  const reageerMand = document.getElementById('js--reageerBuisMand'); //reageerbuis
 
   function addListeners() {
       for (let i = 0; i < pickups.length; i++) {
@@ -85,6 +118,7 @@ function foutObject(){
           if (hold == null) {
             let camera_position = camera.getAttribute('position');
             let box_position = this.getAttribute('position');
+            let posZ = -0.4;
             source = pickups[i].getAttribute('src');
             scaleX= pickups[i].getAttribute('scale').x;
             scaleY = pickups[i].getAttribute('scale').y;
@@ -96,19 +130,65 @@ function foutObject(){
             console.log(huidigObject);
             switch(pickups[i].getAttribute("id")){
               case petriSchaal:
-                spreek("petrischaal");
+                spreekObject("petrischaal");
                 break;
               case reageerBuis:
-                spreek("reageerbuis");
+                spreekObject("reageerbuis");
                 break;
               case petriInhoud:
-                spreek("petriSchaal met inhoud");
+                spreekObject("petriSchaal met inhoud");
                 break;
             }
             // console.log("Je hebt het volgende object gepakt: " + huidigObject);
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
+              switch(pickups[i].getAttribute("id")){
+                case petriSchaal:
+                  console.log("petriS");
+                  spreekObject("bacterieplaat");
+                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case reageerBuis:
+                  console.log("reageerBuis");
+                  spreekObject("reageerbuis");
+                  displayInfo[0].setAttribute("value", "Object: Reageerbuis");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  posZ = posZ - 0.4
+                  break;
+                case petriInhoud:
+                  console.log("petriInhoud");
+                  spreekObject("bacterieplaat met inhoud");
+                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
+                  break;
+                case maatCylinder:
+                  console.log("maatcylinder");
+                  spreekObject("maatcilinder");
+                  displayInfo[0].setAttribute("value", "Object: Maatcilinder");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case bekerGlas:
+                  console.log("bekerglas");
+                  spreekObject("bekerglas");
+                  displayInfo[0].setAttribute("value", "Object: Bekerglas");
+                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case pipet:
+                  console.log("pipet");
+                  spreekObject("pipet");
+                  displayInfo[0].setAttribute("value", "Object: Pipet");
+                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+              }
+
               camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
-                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="1 -1 -1.5"></a-gltf-model>';
+                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
               hold = "hold";
               this.remove();
 
@@ -122,7 +202,16 @@ function foutObject(){
 
     for (let i = 0; i < placeholders.length; i++) {
       placeholders[i].addEventListener('click', function(evt){
-        console.log(source);
+
+        function plaatsObject()
+        {
+          document.getElementById("js--hold").remove();
+          addListeners();
+          hold = null;
+          source = null;
+          console.log("Correcte plek!");
+          scene.appendChild(item);
+        }
 
         if (hold == "hold"){
           let item = document.createElement('a-gltf-model');
@@ -134,35 +223,59 @@ function foutObject(){
           huidigNeerzet = placeholders[i].getAttribute("id");
           console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
           console.log("Je huidige object is: " + huidigObject);
-          console.log(emmerZak, petriSchaal, petriInhoud);
           switch(huidigNeerzet)
           {
             case emmerZak:
               if(huidigObject != petriInhoud)
               {
                 foutObject();
-
+                break;
               }
               else if(huidigObject == petriInhoud)
               {
-                document.getElementById("js--hold").remove();
-                addListeners();
-                hold = null;
-                source = null;
-                console.log("Correcte plek!");
-                scene.appendChild(item);
+                plaatsObject();
+                break;
               }
               break;
-            case petriSchaal:
-            case petriInhoud:
 
-          petriInhoud
-          reageerBuis
+            case emmer:
+              if(huidigObject != maatCylinder)
+              {
+                foutObject();
+                break;
+              }
+              else if(huidigObject == maatCylinder)
+              {
+                plaatsObject();
+                break;
+              }
+              break;
+
+            case plasticBak:
+              if(huidigObject != bekerGlas || huidigObject != petriSchaal)
+              {
+                foutObject();
+              }
+              else if(huidigObject == bekerGlas || huidigObject != petriSchaal)
+              {
+                plaatsObject();
+              }
+
+
+            case reageerMand:
+              if(huidigObject != reageerBuis)
+              {
+                foutObject();
+              }
+              else if(huidigObject == reageerBuis)
+              {
+                plaatsObject();
+              }
+              break;
           }
-          // document.getElementById("js--hold").remove();
-          // addListeners();
-          // hold = null;
-          // source = null;
+          displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
+          displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
+          displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
 
         }
       });
