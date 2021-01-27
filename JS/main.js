@@ -7,8 +7,8 @@ window.onload = () => {
   const volgende = document.getElementById('js--volgendeSlide');
   const vorige = document.getElementById('js--vorigeSlide')
   const display = document.getElementById('js--displayBox');
-  const inhoud = ["Hallo welkom bij onze VR experience. Deze VR room gaat je helpen beter leren om te gaan met verschillende veiligheidsvoorschriften van het chemie lab op de Hogeschool Leiden", 
-                  "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.", 
+  const inhoud = ["Hallo welkom bij onze VR experience. Deze VR room gaat je helpen beter leren om te gaan met verschillende veiligheidsvoorschriften van het chemie lab op de Hogeschool Leiden",
+                  "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.",
                   "Je kunt de voorwerpen op de tafel oppakken door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
                   "Zoek vervolgens de juiste afvalbak voor het voorwerp en plaats het voorwerp in de bak op dezelfde manier.",
                   "Pak nu een voorwerp om te beginnen!"];
@@ -46,7 +46,7 @@ window.onload = () => {
   //     setTimeout(() => {
   //       laatTextZien(index), index--, afvalBak.setAttribute("opacity", 1);
   //     }, 2000);
-  
+
   //     responsiveVoice.speak(inhoud[index], "Dutch Female");
   //   }
 
@@ -80,6 +80,10 @@ function spreek(object){
       camera.setAttribute('animation', att.value);
     });
   }
+
+  // Display
+  let displayInfo = document.getElementsByClassName("js--info");
+
   // Pickup items
   let pickups = document.getElementsByClassName('js--pickup');
   let hold = null;
@@ -91,6 +95,8 @@ function spreek(object){
   const petriS = document.getElementById('js--petriSchaal');
   const petriInhoud = document.getElementById('js--petriSchaal_Inhoud');
   const reageerBuis = document.getElementById('js--reageerBuis');
+  const maatCylinder = document.getElementById('js--maatCylinder');
+  const bekerGlas = document.getElementById('js--bekerGlas');
   const placeholders = document.getElementsByClassName('js--placeholder');
 
   function addListeners() {
@@ -110,16 +116,25 @@ function spreek(object){
             switch(pickups[i].getAttribute("id")){
               case "js--petriSchaal":
                 console.log("petriS");
-                spreek("petrischaal");
+                spreek("bacterieplaat");
+                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
                 break;
               case "js--reageerBuis":
                 console.log("reageerBuis");
                 spreek("reageerbuis");
+                displayInfo[0].setAttribute("value", "Object: Reageerbuis");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
                 posZ = posZ - 0.2
                 break;
               case "js--petriSchaal_Inhoud":
                 console.log("petriInhoud");
-                spreek("petriSchaal met inhoud");
+                spreek("bacterieplaat met inhoud");
+                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
                 break;
             }
 
@@ -153,7 +168,9 @@ function spreek(object){
           addListeners();
           hold = null;
           source = null;
-
+          displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
+          displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
+          displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
         }
       });
     }
