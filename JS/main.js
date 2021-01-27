@@ -100,102 +100,100 @@ function spreek(object){
   const placeholders = document.getElementsByClassName('js--placeholder');
 
   function addListeners() {
-      for (let i = 0; i < pickups.length; i++) {
-        pickups[i].addEventListener('click', function(evt){
-          if (hold == null) {
-            let camera_position = camera.getAttribute('position');
-            let box_position = this.getAttribute('position');
-            let posZ = -0.4;
-            source = pickups[i].getAttribute('src');
-            scaleX= pickups[i].getAttribute('scale').x;
-            scaleY = pickups[i].getAttribute('scale').y;
-            scaleZ = pickups[i].getAttribute('scale').z;
-            console.log("X"+scaleX);
-            console.log("Y"+scaleY);
-            console.log("Z"+scaleZ);
+    for (let i = 0; i < pickups.length; i++) {
+      pickups[i].addEventListener('click', function(evt){
+        if (hold == null) {
+          let camera_position = camera.getAttribute('position');
+          let box_position = this.getAttribute('position');
+          let posZ = -0.4;
+          source = pickups[i].getAttribute('src');
+          scaleX= pickups[i].getAttribute('scale').x;
+          scaleY = pickups[i].getAttribute('scale').y;
+          scaleZ = pickups[i].getAttribute('scale').z;
+          console.log("X"+scaleX);
+          console.log("Y"+scaleY);
+          console.log("Z"+scaleZ);
 
-            console.log(pickups[i]);
-            if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
-              switch(pickups[i].getAttribute("id")){
-                case "js--petriSchaal":
-                  console.log("petriS");
-                  spreek("bacterieplaat");
-                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
-                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                  break;
-                case "js--reageerBuis":
-                  console.log("reageerBuis");
-                  spreek("reageerbuis");
-                  displayInfo[0].setAttribute("value", "Object: Reageerbuis");
-                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                  posZ = posZ - 0.4
-                  break;
-                case "js--petriSchaal_Inhoud":
-                  console.log("petriInhoud");
-                  spreek("bacterieplaat met inhoud");
-                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
-                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                  displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
-                  break;
-                case "js--maatCylinder":
-                  console.log("maatcylinder");
-                  spreek("maatcilinder");
-                  displayInfo[0].setAttribute("value", "Object: Maatcilinder");
-                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                  break;
-                case "js--bekerGlas":
-                  console.log("bekerglas");
-                  spreek("bekerglas");
-                  displayInfo[0].setAttribute("value", "Object: Bekerglas");
-                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
-                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                  break;
-                case "js--pipet":
-                  console.log("pipet");
-                  spreek("pipet");
-                  displayInfo[0].setAttribute("value", "Object: Pipet");
-                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
-                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                  break;
-              }
-
-              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
-                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
-              hold = "hold";
-              this.remove();
-
+          console.log(pickups[i]);
+          if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
+            switch(pickups[i].getAttribute("id")){
+              case "js--petriSchaal":
+                console.log("petriS");
+                spreek("bacterieplaat");
+                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                break;
+              case "js--reageerBuis":
+                console.log("reageerBuis");
+                spreek("reageerbuis");
+                displayInfo[0].setAttribute("value", "Object: Reageerbuis");
+                displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                posZ = posZ - 0.4
+                break;
+              case "js--petriSchaal_Inhoud":
+                console.log("petriInhoud");
+                spreek("bacterieplaat met inhoud");
+                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
+                break;
+              case "js--maatCylinder":
+                console.log("maatcylinder");
+                spreek("maatcilinder");
+                displayInfo[0].setAttribute("value", "Object: Maatcilinder");
+                displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                break;
+              case "js--bekerGlas":
+                console.log("bekerglas");
+                spreek("bekerglas");
+                displayInfo[0].setAttribute("value", "Object: Bekerglas");
+                displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                break;
+              case "js--pipet":
+                console.log("pipet");
+                spreek("pipet");
+                displayInfo[0].setAttribute("value", "Object: Pipet");
+                displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                break;
             }
+             camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
+              source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
+            hold = "hold";
+            this.remove();
+
           }
-        });
-      }
-    }
-
-    addListeners();
-
-    for (let i = 0; i < placeholders.length; i++) {
-      placeholders[i].addEventListener('click', function(evt){
-        console.log(source);
-
-        if (hold == "hold"){
-          let item = document.createElement('a-gltf-model');
-          item.setAttribute("src", source);
-          item.setAttribute("class", "js--pickup js--interact");
-          item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
-          item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
-          scene.appendChild(item);
-          document.getElementById("js--hold").remove();
-          addListeners();
-          hold = null;
-          source = null;
-          displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
-          displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
-          displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
         }
       });
     }
+  }
+
+  addListeners();
+
+  for (let i = 0; i < placeholders.length; i++) {
+    placeholders[i].addEventListener('click', function(evt){
+      console.log(source);
+      if (hold == "hold"){
+        let item = document.createElement('a-gltf-model');
+        item.setAttribute("src", source);
+        item.setAttribute("class", "js--pickup js--interact");
+        item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
+        item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
+        scene.appendChild(item);
+        document.getElementById("js--hold").remove();
+        addListeners();
+        hold = null;
+        source = null;
+        displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
+        displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
+        displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
+      }
+    });
+  }
 
 
 }
