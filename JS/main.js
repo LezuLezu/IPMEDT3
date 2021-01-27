@@ -108,9 +108,9 @@ function foutObject(){
 
   const placeholders = document.getElementsByClassName('js--placeholder');
   const emmerZak = document.getElementById('js--emmerZak').getAttribute("id"); //besmette bactierplaat gaat hier in, petris met stip
-  const emmer = document.getElementById('js--emmer'); //besmet glaswerk
-  const plasticBak = document.getElementById('js--plasticBak'); //gebruikt niet besmet glas
-  const reageerMand = document.getElementById('js--reageerBuisMand'); //reageerbuis
+  const emmer = document.getElementById('js--emmer').getAttribute("id"); //besmet glaswerk
+  const plasticBak = document.getElementById('js--plasticBak').getAttribute("id"); //gebruikt niet besmet glas
+  const reageerMand = document.getElementById('js--reageerBuisMand').getAttribute("id"); //reageerbuis
 
   function addListeners() {
       for (let i = 0; i < pickups.length; i++) {
@@ -229,13 +229,13 @@ function foutObject(){
           
           switch(huidigNeerzet)
           {
-            case "js--emmerZak":
-              if(huidigObject != "js--petriSchaal_Inhoud")
+            case emmerZak:
+              if(huidigObject != petriInhoud)
               {
                 foutObject();
                 break;
               }
-              else if(huidigObject == "js--petriSchaal_Inhoud")
+              else if(huidigObject == petriInhoud)
               {
                 plaatsObject();
                 resetInfo();
@@ -243,13 +243,13 @@ function foutObject(){
               }
               break;
 
-            case "js--emmer":
-              if(huidigObject != "js--maatCylinder")
+            case emmer:
+              if(huidigObject != maatCylinder)
               {
                 foutObject();
                 break;
               }
-              else if(huidigObject == "js--maatCylinder")
+              else if(huidigObject == maatCylinder)
               {
                 plaatsObject();
                 resetInfo();
@@ -257,14 +257,14 @@ function foutObject(){
               }
               break;
 
-            case "js--plasticBak":
-              if(huidigObject == "js--bekerGlas")
+            case plasticBak:
+              if(huidigObject == bekerGlas)
               {
                 plaatsObject();
                 resetInfo();
                 break;
               }
-              else if(huidigObject == "js--petriSchaal")
+              else if(huidigObject == petriSchaal)
               {
                 plaatsObject();
                 resetInfo();
@@ -275,12 +275,13 @@ function foutObject(){
                 break;
               }
 
-            case "js--reageerBuisMand":
-              if(huidigObject != "js--reageerBuis")
+
+            case reageerMand:
+              if(huidigObject != reageerBuis)
               {
                 foutObject();
               }
-              else if(huidigObject == "js--reageerBuis")
+              else if(huidigObject == reageerBuis)
               {
                 plaatsObject();
                 resetInfo();
