@@ -126,10 +126,10 @@ function foutObject(){
             console.log("X"+scaleX);
             console.log("Y"+scaleY);
             console.log("Z"+scaleZ);
-            huidigObject = pickups[i].getAttribute("id");
+            huidigObject = this.getAttribute("id");
             console.log(huidigObject);
 
-            // switch(pickups[i].getAttribute("id")){
+            // switch(this.getAttribute("id")){
             //   case petriSchaal:
             //     spreekObject("petrischaal");
             //     break;
@@ -140,8 +140,8 @@ function foutObject(){
             //     spreekObject("petriSchaal met inhoud");
             //     break;
             // }
-            // console.log("Je hebt het volgende object gepakt: " + huidigObject);
 
+            // console.log("Je hebt het volgende object gepakt: " + huidigObject);
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
               switch(this.getAttribute("id")){
                 case petriSchaal:
@@ -189,7 +189,8 @@ function foutObject(){
                   break;
               }
 
-              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--interact" src="' + source + '" scale="' + scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
+              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
+                source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
               hold = "hold";
               this.remove();
 
@@ -204,23 +205,14 @@ function foutObject(){
     for (let i = 0; i < placeholders.length; i++) {
       placeholders[i].addEventListener('click', function(evt){
 
-        // function plaatsObject()
-        // {
-        //   document.getElementById("js--hold").remove();
-        //   addListeners();
-        //   console.log("Correcte plek!");
-        //   scene.appendChild(item);
-        //   hold = null;
-        //   source = null;
-        // }
 
         if (hold == "hold"){
           let item = document.createElement('a-gltf-model');
           item.setAttribute("src", source);
-          // item.setAttribute("class", "js--pickup js--interact");
+          item.setAttribute("class", "js--pickup js--interact");
           item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
-          item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
-          scene.appendChild(item);
+          item.setAttribute("position", {x: this.getAttribute('position').x, y:"-1", z: this.getAttribute('position').z});
+          // scene.appendChild(item);
           huidigNeerzet = this.getAttribute("id");
           console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
           console.log("Je huidige object is: " + huidigObject);
@@ -229,47 +221,51 @@ function foutObject(){
           {
             document.getElementById("js--hold").remove();
             addListeners();
-            console.log("Correcte plek!");
-            scene.appendChild(item);
             hold = null;
             source = null;
+            console.log("Correcte plek!");
+            scene.appendChild(item);
           }
-
+          
           switch(huidigNeerzet)
           {
             case "js--emmerZak":
-              if(huidigObject == "js--petriSchaal_Inhoud")
+              if(huidigObject != "js--petriSchaal_Inhoud")
+              {
+                foutObject();
+                break;
+              }
+              else if(huidigObject == "js--petriSchaal_Inhoud")
               {
                 plaatsObject();
                 resetInfo();
                 break;
               }
-              else
-              {
-                foutObject();
-                break;
-              }
+              break;
 
             case "js--emmer":
-              if(huidigObject == "js--maatCylinder")
-              {
-                plaatsObject();
-                resetInfo();
-                break;
-              }
-              else
+              if(huidigObject != "js--maatCylinder")
               {
                 foutObject();
                 break;
               }
-
-            case "js--plasticBak":
-              if(huidigObject == "js--bekerGlas") {
+              else if(huidigObject == "js--maatCylinder")
+              {
                 plaatsObject();
                 resetInfo();
                 break;
               }
-              else if(huidigObject == "js--petriSchaal") {
+              break;
+
+            case "js--plasticBak":
+              if(huidigObject == "js--bekerGlas")
+              {
+                plaatsObject();
+                resetInfo();
+                break;
+              }
+              else if(huidigObject == "js--petriSchaal")
+              {
                 plaatsObject();
                 resetInfo();
                 break;
@@ -280,18 +276,18 @@ function foutObject(){
               }
 
             case "js--reageerBuisMand":
-              if(huidigObject == "js--reageerBuis")
+              if(huidigObject != "js--reageerBuis")
+              {
+                foutObject();
+              }
+              else if(huidigObject == "js--reageerBuis")
               {
                 plaatsObject();
                 resetInfo();
-                break;
               }
-              else
-              {
-                foutObject
-                break;
-              }
+              break;
           }
+
         }
       });
     }
@@ -301,6 +297,5 @@ function foutObject(){
       displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
       displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
     }
-
 
 }
