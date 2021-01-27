@@ -106,17 +106,17 @@ function spreek(object){
           let camera_position = camera.getAttribute('position');
           let box_position = this.getAttribute('position');
           let posZ = -0.4;
-          source = pickups[i].getAttribute('src');
-          scaleX= pickups[i].getAttribute('scale').x;
-          scaleY = pickups[i].getAttribute('scale').y;
-          scaleZ = pickups[i].getAttribute('scale').z;
+          source = this.getAttribute('src');
+          scaleX= this.getAttribute('scale').x;
+          scaleY = this.getAttribute('scale').y;
+          scaleZ = this.getAttribute('scale').z;
           console.log("X"+scaleX);
           console.log("Y"+scaleY);
           console.log("Z"+scaleZ);
 
           console.log(pickups[i]);
           if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
-            switch(pickups[i].getAttribute("id")){
+            switch(this.getAttribute("id")){
               case "js--petriSchaal":
                 console.log("petriS");
                 spreek("bacterieplaat");
@@ -161,11 +161,10 @@ function spreek(object){
                 displayInfo[2].setAttribute("value", "Inhoud: Geen");
                 break;
             }
-             camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
-              source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
+
+            camera.innerHTML += '<a-gltf-model id="js--hold" class="js--interact" src="' + source + '" scale="' + scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
             hold = "hold";
             this.remove();
-
           }
         }
       });
@@ -180,12 +179,14 @@ function spreek(object){
       if (hold == "hold"){
         let item = document.createElement('a-gltf-model');
         item.setAttribute("src", source);
-        item.setAttribute("class", "js--pickup js--interact");
+        // item.setAttribute("class", "js--pickup js--interact");
         item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
         item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
         scene.appendChild(item);
         document.getElementById("js--hold").remove();
         addListeners();
+        console.log(pickups);
+        
         hold = null;
         source = null;
         displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
