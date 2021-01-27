@@ -2,9 +2,104 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Unkown</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script type="text/javascript" src="./JS/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=2Z20Z19s"></script>
+
+    <title>LabVeiligheid</title>
   </head>
   <body>
-<p> test 1234 gmeaakt door Victor</p>
-  </body>
-</html>
+    <a-scene id="js--scene">
+        <a-camera id="js--camera"  position="0 2 0" wasd-controls="acceleration:800">
+          <a-entity id="js--cursor"
+          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
+          animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+          cursor = "fuse: true; fuseTimeout: 2000"
+          material = "color: black; shader: flat"
+          geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+          position = "0 0 -0.5"
+          raycaster = "objects: .js--interact"
+        ></a-entity>
+        </a-camera>
+
+        <!-- Movement positions -->
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 0"></a-cylinder>
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="0 -1 -6"></a-cylinder>
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="-5 -1 -6"></a-cylinder>
+        <a-cylinder class="js--place js--interact" color="grey" radius="0.5" height="0.01" position="5 -1 -6"></a-cylinder>
+
+        <!-- placeholders -->
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" id="js--emmer" class="js--placeholder js--interact" position="-6 -0.5 -7" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer met zak.glb" id="js--emmerZak" class="js--placeholder js--interact" position="-4 -0.5 -4" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Plastic bak.glb" id="js--plasticBak" class="js--placeholder js--interact" position="7 -0.75 -7" rotation="0 120 0" scale="0.5 0.5 0.5"></a-gltf-model>
+
+
+    <!-- 3d objects -->
+      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal" src="Assets/Models/glbFiles/petriSchaal.glb" scale="0.15 0.15 0.15"  position="0 1.1 -8" ></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--petriSchaal_Inhoud" src="Assets/Models/glbFiles/petriSchaal_Inhoud.glb" scale="0.15 0.15 0.15" position="1 1.1 -8"></a-gltf-model>
+      <a-gltf-model class="js--pickup js--interact" id="js--reageerBuis" src="Assets/Models/glbFiles/Reageerbuis.glb" material="transparent: true;" scale="0.05 0.075 0.05" position="-1 1.05 -8"></a-gltf-model>
+      <!-- WHITEBOARD -->
+      <a-gltf-model src="Assets/Models/glbFiles/Bord.glb" rotation="0 -90 0" scale="4 4 4" position="3 2 -28">
+        <a-image id="js--afvalBak" position="2 -8.5 0.1" src="assets/Images/Emmer+zak.png" scale="10 10 0.1" opacity="0" ></a-image>
+
+        <a-text id="js--displayBox" position="0.1 2.3 3" rotation="0 90 0" text="value: Welkom bij \n het VR lab!;
+                                  color: black" scale="1.5 1.5 1"></a-text>
+      </a-gltf-model>
+      <!-- Tafel -->
+      <a-gltf-model src="Assets/Models/glbFiles/Tafel.glb" rotation="0 -90 0" position="0 0 -8"></a-gltf-model>
+      <!-- coatrack -->
+      <a-gltf-model src="Assets/Models/glbFiles/coatRack.glb"  rotation="0 90 0" position="17.5 4.5 8.5"></a-gltf-model>
+
+
+  <!-- PRESENTATIE -->
+      <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff">
+
+
+
+  <!-- BUTTON VOOR VOLGENDE TEKST -->
+        <a-box class="js--interact" id="js--doos" color="red" position="-13 0 0.1" depth="1" height="2" width="6" animation="property: position; dir: alternate; dur: 1000;
+                                       easing: easeInSine; loop: true; to: -13 0.3 0">
+
+          <a-text position="-2.5 0 0.8" text="value: klik hier; color: black" scale="7 7 1"></a-text>
+        </a-box>
+      </a-plane>
+
+
+      <!-- Enviroment -->
+      <!-- door -->
+      <a-plane position="9 -3 14.9" rotation="0 180 0" width="5" height="18" color="#a8422b"></a-plane>
+      <!-- doorknob -->
+      <a-sphere position="7.5 0 14.7" radius="0.3" color="#ff9900"></a-sphere>
+      <!-- door windows -->
+      <a-plane position="8 4 14.8" rotation="0 180 0" width="1.8" height="1.8" color="#c3ebff"></a-plane>
+      <a-plane position="10 4 14.8" rotation="0 180 0" width="1.8" height="1.8" color="#c3ebff"></a-plane>
+      <a-plane position="8 2 14.8" rotation="0 180 0" width="1.8" height="1.8" color="#c3ebff"></a-plane>
+      <a-plane position="10 2 14.8" rotation="0 180 0" width="1.8" height="1.8" color="#c3ebff"></a-plane>
+
+      <!--safety lines -->
+      <a-plane position="17.9 -4.9 10" rotation="-90 0 0" width="0.2" height="15" color="#ffcf00"></a-plane>
+      <a-plane position="10 -4.9 2.6" rotation="-90 90 0" width="0.2" height="16" color="#ffcf00"></a-plane>
+      <a-plane position="2 -4.9 10" rotation="-90 0 0" width="0.2" height="15" color="#ffcf00"></a-plane>
+
+
+      <!-- floor-->
+      <a-plane position="0 -5 -14" rotation="-90 0 0" width="40" height="60" color="#e9f8ff"></a-plane>
+      <!-- ceiling-->
+      <a-plane position="0 18 -14" rotation="90 0 0" width="40" height="60" color="#e9f8ff"></a-plane>
+
+      <!-- walls -->
+      <!-- backside -->
+      <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#199fb2"></a-plane>
+      <!-- right side -->
+      <a-plane position="18 9 -14" rotation="0 -90 0" width="60" height="30" color="#7cd4ff"></a-plane>
+      <!-- left side -->
+      <a-plane position="-18 9 -14" rotation="0 90 0" width="60" height="30" color="#7cd4ff"></a-plane>
+      <a-image src="Assets/Images/periodiek_systeem.png" position="-17.9 6 -14" rotation="0 90 0" width="9" height="6"></a-image>
+      <!-- front end -> behind camera -->
+      <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#5bcaff"></a-plane>
+
+      </a-scene>
+    </body>
+  </html>
