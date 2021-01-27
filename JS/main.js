@@ -80,6 +80,10 @@ function spreek(object){
       camera.setAttribute('animation', att.value);
     });
   }
+
+  // Display
+  let displayInfo = document.getElementsByClassName("js--info");
+
   // Pickup items
   let pickups = document.getElementsByClassName('js--pickup');
   let hold = null;
@@ -110,16 +114,25 @@ function spreek(object){
             switch(pickups[i].getAttribute("id")){
               case "js--petriSchaal":
                 console.log("petriS");
-                spreek("petrischaal");
+                spreek("bacterieplaat");
+                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
                 break;
               case "js--reageerBuis":
                 console.log("reageerBuis");
                 spreek("reageerbuis");
+                displayInfo[0].setAttribute("value", "Object: Reageerbuis");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
                 posZ = posZ - 0.2
                 break;
               case "js--petriSchaal_Inhoud":
                 console.log("petriInhoud");
-                spreek("petriSchaal met inhoud");
+                spreek("bacterieplaat met inhoud");
+                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                displayInfo[1].setAttribute("value", "Materiaal: glas");
+                displayInfo[2].setAttribute("value", "Inhoud: geen");
                 break;
             }
 
@@ -153,7 +166,9 @@ function spreek(object){
           addListeners();
           hold = null;
           source = null;
-
+          displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
+          displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
+          displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
         }
       });
     }
