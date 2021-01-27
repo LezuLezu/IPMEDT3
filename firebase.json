@@ -1,6 +1,6 @@
 {
   "hosting": {
-"site": "lab-opruimen-in-vr",
+    "site": "lab-opruimen-in-vr",
     "public": "public",
     "ignore": [
       "firebase.json",
