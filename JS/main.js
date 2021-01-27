@@ -113,47 +113,55 @@ function spreek(object){
             console.log("X"+scaleX);
             console.log("Y"+scaleY);
             console.log("Z"+scaleZ);
-            switch(pickups[i].getAttribute("id")){
-              case "js--petriSchaal":
-                console.log("petriS");
-                spreek("bacterieplaat");
-                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
-                displayInfo[1].setAttribute("value", "Materiaal: glas");
-                displayInfo[2].setAttribute("value", "Inhoud: geen");
-                break;
-              case "js--reageerBuis":
-                console.log("reageerBuis");
-                spreek("reageerbuis");
-                displayInfo[0].setAttribute("value", "Object: Reageerbuis");
-                displayInfo[1].setAttribute("value", "Materiaal: glas");
-                displayInfo[2].setAttribute("value", "Inhoud: geen");
-                posZ = posZ - 0.4
-                break;
-              case "js--petriSchaal_Inhoud":
-                console.log("petriInhoud");
-                spreek("bacterieplaat met inhoud");
-                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
-                displayInfo[1].setAttribute("value", "Materiaal: glas");
-                displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
-                break;
-              case "js--maatCylinder":
-                console.log("maatcylinder");
-                spreek("maatcilinder");
-                displayInfo[0].setAttribute("value", "Object: Maatcilinder");
-                displayInfo[1].setAttribute("value", "Materiaal: glas");
-                displayInfo[2].setAttribute("value", "Inhoud: geen");
-                break;
-              case "js--bekerGlas":
-                console.log("bekerglas");
-                spreek("bekerglas");
-                displayInfo[0].setAttribute("value", "Object: Bekerglas");
-                displayInfo[1].setAttribute("value", "Materiaal: glas");
-                displayInfo[2].setAttribute("value", "Inhoud: geen");
-                break;
-            }
 
             console.log(pickups[i]);
             if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
+              switch(pickups[i].getAttribute("id")){
+                case "js--petriSchaal":
+                  console.log("petriS");
+                  spreek("bacterieplaat");
+                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case "js--reageerBuis":
+                  console.log("reageerBuis");
+                  spreek("reageerbuis");
+                  displayInfo[0].setAttribute("value", "Object: Reageerbuis");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  posZ = posZ - 0.4
+                  break;
+                case "js--petriSchaal_Inhoud":
+                  console.log("petriInhoud");
+                  spreek("bacterieplaat met inhoud");
+                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
+                  break;
+                case "js--maatCylinder":
+                  console.log("maatcylinder");
+                  spreek("maatcilinder");
+                  displayInfo[0].setAttribute("value", "Object: Maatcilinder");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case "js--bekerGlas":
+                  console.log("bekerglas");
+                  spreek("bekerglas");
+                  displayInfo[0].setAttribute("value", "Object: Bekerglas");
+                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case "js--pipet":
+                  console.log("pipet");
+                  spreek("pipet");
+                  displayInfo[0].setAttribute("value", "Object: Pipet");
+                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+              }
+
               camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' +
                 source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
               hold = "hold";
