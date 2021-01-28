@@ -218,7 +218,7 @@ window.onload = () => {
                 rotation = "90 0 0";
                 break;
             }
-            camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="' + scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5" rotation="' + rotation + '"></a-gltf-model>';
+            camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="' + scaleX + ' ' + scaleY + ' ' + scaleZ + '" position="0.5 ' + posZ + ' -0.5" rotation="' + rotation + '"></a-gltf-model>';
             hold = "hold";
             this.remove();
 
