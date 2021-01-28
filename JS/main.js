@@ -203,6 +203,7 @@ window.onload = () => {
                 console.log("maatcylinder");
                 spreekObject("maatcilinder");
                 toonInformatie("Maatcilinder", "Glas", "Geen");
+                posZ = posZ - 0.4
                 break;
               case bekerGlas:
                 console.log("bekerglas");
@@ -244,11 +245,11 @@ window.onload = () => {
           y: scaleY,
           z: scaleZ
         });
-        item.setAttribute("position", {
-          x: this.getAttribute('position').x,
-          y: "-1",
-          z: this.getAttribute('position').z
-        });
+        // item.setAttribute("position", {
+        //   x: this.getAttribute('position').x,
+        //   y: "-1",
+        //   z: this.getAttribute('position').z
+        // });
 
         huidigNeerzet = this.getAttribute("id");
         console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
