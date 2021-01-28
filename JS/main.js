@@ -11,7 +11,7 @@ window.onload = () => {
                   "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.",
                   "Je kunt de voorwerpen op de tafel oppakken door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
                   "Zoek vervolgens de juiste afvalbak voor het voorwerp en plaats het voorwerp in de bak op dezelfde manier.",
-                  "Pak nu een voorwerp om te beginnen!"];
+                  "Pak nu een voorwerp om te beginnen! \n Tip: kijk goed naar de object informatie."];
   const afvalBak = document.getElementById('js--afvalBak');
 
   let index = 0;
@@ -29,7 +29,7 @@ window.onload = () => {
         laatTextZien(index), index++, afvalBak.setAttribute("opacity", 1);
       }, 2000);
 
-      responsiveVoice.speak(inhoud[index], "Dutch Female");
+      responsiveVoice.speak(inhoud[index], "Dutch Male");
     }
     else {
       console.log("lijst is leeg");
@@ -47,18 +47,18 @@ window.onload = () => {
   //       laatTextZien(index), index--, afvalBak.setAttribute("opacity", 1);
   //     }, 2000);
 
-  //     responsiveVoice.speak(inhoud[index], "Dutch Female");
+  //     responsiveVoice.speak(inhoud[index], "Dutch Male");
   //   }
 
   // }
 // end whiteboard code
 
 function spreekObject(object){
-  responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?" , "Dutch Female");
+  responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?" , "Dutch Male");
 }
 
 function foutObject(){
-  responsiveVoice.speak("Dit is niet de juiste plek om dit te deponeren, weet je waar die wel moet?", "Dutch Female");
+  responsiveVoice.speak("Dit is niet de juiste plek om dit te deponeren, weet je waar die wel moet?", "Dutch Male");
 }
 
 
@@ -111,6 +111,9 @@ function foutObject(){
   const emmer = document.getElementById('js--emmer').getAttribute("id"); //besmet glaswerk
   const plasticBak = document.getElementById('js--plasticBak').getAttribute("id"); //gebruikt niet besmet glas
   const reageerMand = document.getElementById('js--reageerBuisMand').getAttribute("id"); //reageerbuis
+  const driepoot = document.getElementById("js--driepoot").getAttribute("id");
+  const kokerKlein = document.getElementById("js--kokerKlein").getAttribute("id");
+  const kokerGroot = document.getElementById("js--kokerGroot").getAttribute("id");
 
   function addListeners() {
       for (let i = 0; i < pickups.length; i++) {
@@ -126,6 +129,7 @@ function foutObject(){
             console.log("X"+scaleX);
             console.log("Y"+scaleY);
             console.log("Z"+scaleZ);
+            let rotation = "0 0 0";
             huidigObject = this.getAttribute("id");
             console.log(huidigObject);
 
@@ -172,6 +176,7 @@ function foutObject(){
                   displayInfo[0].setAttribute("value", "Object: Maatcilinder");
                   displayInfo[1].setAttribute("value", "Materiaal: Glas");
                   displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  posZ = posZ - 0.4
                   break;
                 case bekerGlas:
                   console.log("bekerglas");
@@ -186,10 +191,12 @@ function foutObject(){
                   displayInfo[0].setAttribute("value", "Object: Pipet");
                   displayInfo[1].setAttribute("value", "Materiaal: Plastic");
                   displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  posZ = posZ + 0.2
+                  rotation = "90 0 0";
                   break;
               }
 
-              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
+              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5" rotation="' + rotation + '"></a-gltf-model>';
               hold = "hold";
               this.remove();
 
@@ -235,40 +242,38 @@ function foutObject(){
             switch(huidigNeerzet)
             {
               case emmerZak:
-                if(huidigObject != petriInhoud)
-                {
+                if(huidigObject != petriInhoud) {
                   foutObject();
                   break;
                 }
-                else if(huidigObject == petriInhoud)
-                {
+                else if(huidigObject == petriInhoud) {
+                  item.setAttribute("position", {x: -14, y: -4.8, z: -7});
                   plaatsObject();
                   resetInfo();
                   break;
                 }
 
               case emmer:
-                if(huidigObject != maatCylinder)
-                {
+                if(huidigObject != maatCylinder) {
                   foutObject();
                   break;
                 }
-                else if(huidigObject == maatCylinder)
-                {
+                else if(huidigObject == maatCylinder) {
+                  item.setAttribute("position", {x: -14, y: -4.8, z: -10});
                   plaatsObject();
                   resetInfo();
                   break;
                 }
 
               case plasticBak:
-                if(huidigObject == bekerGlas)
-                {
+                if(huidigObject == bekerGlas) {
+                  item.setAttribute("position", {x: 13.7, y: -3.8, z: -8});
                   plaatsObject();
                   resetInfo();
                   break;
                 }
-                else if(huidigObject == petriSchaal)
-                {
+                else if(huidigObject == petriSchaal) {
+                  item.setAttribute("position", {x: 14.3, y: -3.8, z: -7});
                   plaatsObject();
                   resetInfo();
                   break;
@@ -278,22 +283,42 @@ function foutObject(){
                   break;
                 }
 
-
               case reageerMand:
-                if(huidigObject != reageerBuis)
-                {
+                if(huidigObject != reageerBuis) {
                   foutObject();
                 }
-                else if(huidigObject == reageerBuis)
-                {
+                else if(huidigObject == reageerBuis) {
+                  item.setAttribute("position", {x: -4, y: 0.05, z: -15.2});
+                  item.setAttribute("rotation", "0 0 0");
                   plaatsObject();
                   resetInfo();
                 }
                 break;
+
+              case driepoot:
+                if(huidigObject == pipet) {
+                  item.setAttribute("position", {x: -5, y: 1.2, z: -13.7});
+                  item.setAttribute("rotation", "80 0 0");
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
+                else {
+                  foutObject();
+                  break;
+                }
+
+              case kokerGroot:
+                foutObject();
+                break;
+
+              case kokerKlein:
+                foutObject();
+                break;
             }
           }
           else {
-            responsiveVoice.speak("Je staat niet dichtbij genoeg.", "Dutch Female")
+            responsiveVoice.speak("Je staat niet dichtbij genoeg.", "Dutch Male")
           }
         }
       });
