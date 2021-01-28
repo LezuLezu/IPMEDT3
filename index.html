@@ -11,7 +11,7 @@
   </head>
   <body>
     <a-scene id="js--scene">
-        <a-camera id="js--camera"  position="0 2.1 0" wasd-controls="acceleration:100">
+        <a-camera id="js--camera"  position="0 2.1 0" wasd-controls="acceleration:800">
 
           <a-plane width="0.4" height="0.15" position="0.66 0.345 -0.5" color="white">
             <a-text value="Object informatie" color="black" position="-0.2 0.06 0" width="0.6"></a-text>
@@ -47,13 +47,11 @@
         <!-- right of table -->
         <a-cylinder class="js--place js--interact" color="grey" radius="1" height="0.01" position="9 -4.9 -15"></a-cylinder>
 
-
-
         <!-- placeholders -->
-        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" class="js--placeholder js--interact" position="-14 -3.8 -10" rotation="0 60 0" scale="1.1 1.1 1.1"></a-gltf-model>
-        <a-gltf-model src="Assets/Models/glbfiles/Emmer_met_zak.glb" class="js--placeholder js--interact" position="-14 -3.8 -7" rotation="0 -60 0" scale="1.1 1.1 1.1"></a-gltf-model>
-        <a-gltf-model src="Assets/Models/glbfiles/PlasticBak.glb" class="js--placeholder js--interact" position="14 -3.8 -7.5" rotation="0 120 0" scale="1.1 1.1 1.1"></a-gltf-model>
-        <a-gltf-model src="Assets/Models/glbFiles/Reageerbuismand.glb" class="js--placeholder js--interact" position="-5 0.35 -15" scale="0.5 0.5 0.5" rotation="0 220 0"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer.glb" id="js--emmer" class="js--placeholder js--interact" position="-14 -3.8 -10" rotation="0 60 0" scale="1.1 1.1 1.1"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/Emmer_met_zak.glb" id="js--emmerZak" class="js--placeholder js--interact" position="-14 -3.8 -7" rotation="0 -60 0" scale="1.1 1.1 1.1"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbfiles/PlasticBak.glb" id="js--plasticBak"  class="js--placeholder js--interact" position="14 -3.8 -7.5" rotation="0 120 0" scale="1.1 1.1 1.1"></a-gltf-model>
+        <a-gltf-model src="Assets/Models/glbFiles/Reageerbuismand.glb" id="js--reageerBuisMand" class="js--placeholder js--interact" position="-5 0.35 -15" scale="0.5 0.5 0.5" rotation="0 220 0"></a-gltf-model>
         <!-- pipetbak -->
         <a-cube class="js--placeholder js--interact" position="-5 0.35 -15" scale="0.5 0.5 0.5" rotation="0 220 0"></a-cube>
 
@@ -132,5 +130,10 @@
       <a-plane position="0 9 15" rotation="0 180 0" width="40" height="30" color="#5bcaff"></a-plane>
 
       </a-scene>
+      <!-- Firbase scripts -->
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="/__/firebase/8.2.4/firebase-app.js"></script>
+      <!-- Initialize Firebase -->
+      <script src="/__/firebase/init.js"></script>
     </body>
   </html>

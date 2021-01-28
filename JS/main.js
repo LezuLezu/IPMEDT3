@@ -53,8 +53,12 @@ window.onload = () => {
   // }
 // end whiteboard code
 
-function spreek(object){
+function spreekObject(object){
   responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?" , "Dutch Female");
+}
+
+function foutObject(){
+  responsiveVoice.speak("Dit is niet de juiste plek om dit te deponeren, weet je waar die wel moet?", "Dutch Female");
 }
 
 
@@ -91,110 +95,216 @@ function spreek(object){
   let scaleX  = null;
   let scaleY = null;
   let scaleZ = null;
+
   let huidigObject = null;
-  const petriS = document.getElementById('js--petriSchaal');
-  const petriInhoud = document.getElementById('js--petriSchaal_Inhoud');
-  const reageerBuis = document.getElementById('js--reageerBuis');
-  const maatCylinder = document.getElementById('js--maatCylinder');
-  const bekerGlas = document.getElementById('js--bekerGlas');
+  let huidigNeerzet = null;
+
+  const petriSchaal = document.getElementById('js--petriSchaal').getAttribute("id"); //plastic bak
+  const petriInhoud = document.getElementById('js--petriSchaal_Inhoud').getAttribute("id"); //emmer met zak
+  const reageerBuis = document.getElementById('js--reageerBuis').getAttribute("id"); //reageerbuismand
+  const maatCylinder = document.getElementById('js--maatCylinder').getAttribute("id"); //emmer zonder zak
+  const bekerGlas = document.getElementById('js--bekerGlas').getAttribute("id"); //plastic bak
+  const pipet = document.getElementById('js--pipet').getAttribute("id"); // onbekend
+
   const placeholders = document.getElementsByClassName('js--placeholder');
+  const emmerZak = document.getElementById('js--emmerZak').getAttribute("id"); //besmette bactierplaat gaat hier in, petris met stip
+  const emmer = document.getElementById('js--emmer').getAttribute("id"); //besmet glaswerk
+  const plasticBak = document.getElementById('js--plasticBak').getAttribute("id"); //gebruikt niet besmet glas
+  const reageerMand = document.getElementById('js--reageerBuisMand').getAttribute("id"); //reageerbuis
 
   function addListeners() {
-    for (let i = 0; i < pickups.length; i++) {
-      pickups[i].addEventListener('click', function(evt){
-        if (hold == null) {
-          let camera_position = camera.getAttribute('position');
-          let box_position = this.getAttribute('position');
-          let posZ = -0.4;
-          source = this.getAttribute('src');
-          scaleX= this.getAttribute('scale').x;
-          scaleY = this.getAttribute('scale').y;
-          scaleZ = this.getAttribute('scale').z;
-          console.log("X"+scaleX);
-          console.log("Y"+scaleY);
-          console.log("Z"+scaleZ);
+      for (let i = 0; i < pickups.length; i++) {
+        pickups[i].addEventListener('click', function(evt){
+          if (hold == null) {
+            let camera_position = camera.getAttribute('position');
+            let box_position = this.getAttribute('position');
+            let posZ = -0.4;
+            source = this.getAttribute('src');
+            scaleX= this.getAttribute('scale').x;
+            scaleY = this.getAttribute('scale').y;
+            scaleZ = this.getAttribute('scale').z;
+            console.log("X"+scaleX);
+            console.log("Y"+scaleY);
+            console.log("Z"+scaleZ);
+            huidigObject = this.getAttribute("id");
+            console.log(huidigObject);
 
-          console.log(pickups[i]);
+            // switch(this.getAttribute("id")){
+            //   case petriSchaal:
+            //     spreekObject("petrischaal");
+            //     break;
+            //   case reageerBuis:
+            //     spreekObject("reageerbuis");
+            //     break;
+            //   case petriInhoud:
+            //     spreekObject("petriSchaal met inhoud");
+            //     break;
+            // }
+
+            // console.log("Je hebt het volgende object gepakt: " + huidigObject);
+            if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
+              switch(this.getAttribute("id")){
+                case petriSchaal:
+                  console.log("petriS");
+                  spreekObject("bacterieplaat");
+                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case reageerBuis:
+                  console.log("reageerBuis");
+                  spreekObject("reageerbuis");
+                  displayInfo[0].setAttribute("value", "Object: Reageerbuis");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  posZ = posZ - 0.4
+                  break;
+                case petriInhoud:
+                  console.log("petriInhoud");
+                  spreekObject("bacterieplaat met inhoud");
+                  displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
+                  break;
+                case maatCylinder:
+                  console.log("maatcylinder");
+                  spreekObject("maatcilinder");
+                  displayInfo[0].setAttribute("value", "Object: Maatcilinder");
+                  displayInfo[1].setAttribute("value", "Materiaal: Glas");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case bekerGlas:
+                  console.log("bekerglas");
+                  spreekObject("bekerglas");
+                  displayInfo[0].setAttribute("value", "Object: Bekerglas");
+                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+                case pipet:
+                  console.log("pipet");
+                  spreekObject("pipet");
+                  displayInfo[0].setAttribute("value", "Object: Pipet");
+                  displayInfo[1].setAttribute("value", "Materiaal: Plastic");
+                  displayInfo[2].setAttribute("value", "Inhoud: Geen");
+                  break;
+              }
+
+              camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="'+ scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
+              hold = "hold";
+              this.remove();
+
+            }
+            else {
+              responsiveVoice.speak("Je staat niet dichtbij genoeg", "Dutch Male")
+            }
+          }
+        });
+      }
+    }
+
+    addListeners();
+
+    for (let i = 0; i < placeholders.length; i++) {
+      placeholders[i].addEventListener('click', function(evt){
+
+
+        if (hold == "hold"){
+          let item = document.createElement('a-gltf-model');
+          item.setAttribute("src", source);
+          item.setAttribute("class", "js--pickup js--interact");
+          item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
+          item.setAttribute("position", {x: this.getAttribute('position').x, y:"-1", z: this.getAttribute('position').z});
+          // scene.appendChild(item);
+          huidigNeerzet = this.getAttribute("id");
+          console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
+          console.log("Je huidige object is: " + huidigObject);
+          let box_position = this.getAttribute('position');
+          let camera_position = camera.getAttribute('position');
+
+          function plaatsObject()
+          {
+            document.getElementById("js--hold").remove();
+            addListeners();
+            hold = null;
+            source = null;
+            console.log("Correcte plek!");
+            scene.appendChild(item);
+          }
+          
           if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
-            switch(this.getAttribute("id")){
-              case "js--petriSchaal":
-                console.log("petriS");
-                spreek("bacterieplaat");
-                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
-                displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+            switch(huidigNeerzet)
+            {
+              case emmerZak:
+                if(huidigObject != petriInhoud)
+                {
+                  foutObject();
+                  break;
+                }
+                else if(huidigObject == petriInhoud)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
                 break;
-              case "js--reageerBuis":
-                console.log("reageerBuis");
-                spreek("reageerbuis");
-                displayInfo[0].setAttribute("value", "Object: Reageerbuis");
-                displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                posZ = posZ - 0.4
+
+              case emmer:
+                if(huidigObject != maatCylinder)
+                {
+                  foutObject();
+                  break;
+                }
+                else if(huidigObject == maatCylinder)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
                 break;
-              case "js--petriSchaal_Inhoud":
-                console.log("petriInhoud");
-                spreek("bacterieplaat met inhoud");
-                displayInfo[0].setAttribute("value", "Object: Bacterieplaat");
-                displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                displayInfo[2].setAttribute("value", "Inhoud: E. Coli");
-                break;
-              case "js--maatCylinder":
-                console.log("maatcylinder");
-                spreek("maatcilinder");
-                displayInfo[0].setAttribute("value", "Object: Maatcilinder");
-                displayInfo[1].setAttribute("value", "Materiaal: Glas");
-                displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                break;
-              case "js--bekerGlas":
-                console.log("bekerglas");
-                spreek("bekerglas");
-                displayInfo[0].setAttribute("value", "Object: Bekerglas");
-                displayInfo[1].setAttribute("value", "Materiaal: Plastic");
-                displayInfo[2].setAttribute("value", "Inhoud: Geen");
-                break;
-              case "js--pipet":
-                console.log("pipet");
-                spreek("pipet");
-                displayInfo[0].setAttribute("value", "Object: Pipet");
-                displayInfo[1].setAttribute("value", "Materiaal: Plastic");
-                displayInfo[2].setAttribute("value", "Inhoud: Geen");
+
+              case plasticBak:
+                if(huidigObject == bekerGlas)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
+                else if(huidigObject == petriSchaal)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
+                else {
+                  foutObject();
+                  break;
+                }
+
+
+              case reageerMand:
+                if(huidigObject != reageerBuis)
+                {
+                  foutObject();
+                }
+                else if(huidigObject == reageerBuis)
+                {
+                  plaatsObject();
+                  resetInfo();
+                }
                 break;
             }
-
-            camera.innerHTML += '<a-gltf-model id="js--hold" class="js--interact" src="' + source + '" scale="' + scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5"></a-gltf-model>';
-            hold = "hold";
-            this.remove();
+          }
+          else {
+            responsiveVoice.speak("Je staat niet dichtbij genoeg.", "Dutch Female")
           }
         }
       });
     }
-  }
 
-  addListeners();
-
-  for (let i = 0; i < placeholders.length; i++) {
-    placeholders[i].addEventListener('click', function(evt){
-      console.log(source);
-      if (hold == "hold"){
-        let item = document.createElement('a-gltf-model');
-        item.setAttribute("src", source);
-        // item.setAttribute("class", "js--pickup js--interact");
-        item.setAttribute("scale", {x: scaleX, y: scaleY, z: scaleZ});
-        item.setAttribute("position", {x: placeholders[i].getAttribute('position').x, y:"-1", z: placeholders[i].getAttribute('position').z});
-        scene.appendChild(item);
-        document.getElementById("js--hold").remove();
-        addListeners();
-        console.log(pickups);
-        
-        hold = null;
-        source = null;
-        displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
-        displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
-        displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
-      }
-    });
-  }
-
+    function resetInfo() {
+      displayInfo[0].setAttribute("value", "Object: Niets opgepakt");
+      displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
+      displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
+    }
 
 }
