@@ -246,7 +246,6 @@ function foutObject(){
                   resetInfo();
                   break;
                 }
-                break;
 
               case emmer:
                 if(huidigObject != maatCylinder)
@@ -260,7 +259,6 @@ function foutObject(){
                   resetInfo();
                   break;
                 }
-                break;
 
               case plasticBak:
                 if(huidigObject == bekerGlas)
