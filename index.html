@@ -79,12 +79,17 @@
 
       <!-- PRESENTATIE -->
       <a-plane position="0 9 -28" rotation="0 0 0" width="40" height="30" color="#24b8ff">
+  <!-- BUTTON VOOR VOLGENDE TEKST -->
+        <a-box class="js--interact" id="js--volgendeSlide" color="red" position="-9 -6.3 0.1" depth="1" height="2" width="7" animation="property: position; dir: alternate; dur: 1000;
+                                       easing: easeInSine; loop: true; to: -9 -6.6 0">
 
-
-
-        <!-- BUTTON VOOR VOLGENDE TEKST -->
-        <a-box class="js--interact" id="js--volgendeSlide" color="red" position="-9 -6.3 0.1" depth="1" height="2" width="7" animation="property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: -9 -6.6 0">
           <a-text position="-3.2 0 0.8" text="value: Volgende; color: black" scale="7 7 1"></a-text>
+        </a-box>
+
+        <!-- Finish box -->
+        <a-box class="js--interact" id="js--score" color="green" position="50 50 50" depth="1" height="2" width="7" >
+
+          <a-text position="-3.2 0 0.8" text="value: Finish!; color: black" scale="7 7 1"></a-text>
         </a-box>
       </a-plane>
 
