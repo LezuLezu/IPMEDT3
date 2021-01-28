@@ -195,6 +195,9 @@ function foutObject(){
               this.remove();
 
             }
+            else {
+              responsiveVoice.speak("Je staat niet dichtbij genoeg", "Dutch Male")
+            }
           }
         });
       }
@@ -216,6 +219,8 @@ function foutObject(){
           huidigNeerzet = this.getAttribute("id");
           console.log("Je hebt nu de volgende locatie gekozen: " + huidigNeerzet);
           console.log("Je huidige object is: " + huidigObject);
+          let box_position = this.getAttribute('position');
+          let camera_position = camera.getAttribute('position');
 
           function plaatsObject()
           {
@@ -227,68 +232,72 @@ function foutObject(){
             scene.appendChild(item);
           }
           
-          switch(huidigNeerzet)
-          {
-            case emmerZak:
-              if(huidigObject != petriInhoud)
-              {
-                foutObject();
+          if (pythagoras(box_position.x, box_position.z, camera_position.x, camera_position.z) < 5) {
+            switch(huidigNeerzet)
+            {
+              case emmerZak:
+                if(huidigObject != petriInhoud)
+                {
+                  foutObject();
+                  break;
+                }
+                else if(huidigObject == petriInhoud)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
                 break;
-              }
-              else if(huidigObject == petriInhoud)
-              {
-                plaatsObject();
-                resetInfo();
-                break;
-              }
-              break;
 
-            case emmer:
-              if(huidigObject != maatCylinder)
-              {
-                foutObject();
+              case emmer:
+                if(huidigObject != maatCylinder)
+                {
+                  foutObject();
+                  break;
+                }
+                else if(huidigObject == maatCylinder)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
                 break;
-              }
-              else if(huidigObject == maatCylinder)
-              {
-                plaatsObject();
-                resetInfo();
-                break;
-              }
-              break;
 
-            case plasticBak:
-              if(huidigObject == bekerGlas)
-              {
-                plaatsObject();
-                resetInfo();
-                break;
-              }
-              else if(huidigObject == petriSchaal)
-              {
-                plaatsObject();
-                resetInfo();
-                break;
-              }
-              else {
-                foutObject();
-                break;
-              }
+              case plasticBak:
+                if(huidigObject == bekerGlas)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
+                else if(huidigObject == petriSchaal)
+                {
+                  plaatsObject();
+                  resetInfo();
+                  break;
+                }
+                else {
+                  foutObject();
+                  break;
+                }
 
 
-            case reageerMand:
-              if(huidigObject != reageerBuis)
-              {
-                foutObject();
-              }
-              else if(huidigObject == reageerBuis)
-              {
-                plaatsObject();
-                resetInfo();
-              }
-              break;
+              case reageerMand:
+                if(huidigObject != reageerBuis)
+                {
+                  foutObject();
+                }
+                else if(huidigObject == reageerBuis)
+                {
+                  plaatsObject();
+                  resetInfo();
+                }
+                break;
+            }
           }
-
+          else {
+            responsiveVoice.speak("Je staat niet dichtbij genoeg.", "Dutch Female")
+          }
         }
       });
     }
