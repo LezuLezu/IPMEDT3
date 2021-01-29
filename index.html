@@ -70,8 +70,10 @@
       <!-- WHITEBOARD -->
       <a-gltf-model src="Assets/Models/glbFiles/Bord.glb" rotation="0 -90 0" scale="4 4 4" position="0 2 -28">
 
-        <a-text id="js--displayBox" position="0.1 2.3 3" rotation="0 90 0" text="value: Welkom bij \n het VR lab!;
+        <a-text id="js--displayBox" position="0.1 2.3 3" rotation="0 90 0" text="value: Welkom bij het VR lab! \n Druk op start om met de introductie te beginnen.;
                                   color: black" scale="1.5 1.5 1" width="4"></a-text>
+                                
+        <a-text id="js--introVoortgang" position="0.1 0.8 3" rotation="0 90 0" text="color: black;" scale="1.5 1.5 1" width="3"></a-text>
       </a-gltf-model>
       <!-- Tafel -->
       <a-gltf-model src="Assets/Models/glbFiles/Tafel.glb" rotation="0 -90 0" scale="2 2 2" position="0 -2 -14"></a-gltf-model>
@@ -85,7 +87,7 @@
         <a-box class="js--interact" id="js--volgendeSlide" color="red" position="-9 -6.3 0.1" depth="1" height="2" width="7" animation="property: position; dir: alternate; dur: 1000;
                                        easing: easeInSine; loop: true; to: -9 -6.6 0">
 
-          <a-text position="-3.2 0 0.8" text="value: Volgende; color: black" scale="7 7 1"></a-text>
+          <a-text id="js--knopTekst" position="-2 0 0.8" text="value: Start; color: black" scale="7 7 1"></a-text>
         </a-box>
 
         <!-- Finish box -->
