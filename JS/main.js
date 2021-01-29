@@ -26,9 +26,9 @@ window.onload = () => {
     ];
   display.setAttribute("value", fouten[getal]);
   return fouten;
-}
+  }
 
-  index = 0;
+  let index = 0;
 
   function laatTextZien(getal) {
     console.log(getal);
