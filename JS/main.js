@@ -8,12 +8,13 @@ window.onload = () => {
   const volgende = document.getElementById('js--volgendeSlide');
   const display = document.getElementById('js--displayBox');
   const finish = document.getElementById('js--score');
+  const knopTekst = document.getElementById("js--knopTekst");
+  const voortgang = document.getElementById("js--introVoortgang");
   const inhoud = ["Hallo welkom bij onze VR experience. Deze VR room gaat je helpen beter leren om te gaan met verschillende veiligheidsvoorschriften van het chemie lab op de Hogeschool Leiden",
     "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.",
-    "Je kunt de voorwerpen op de tafel oppakken door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
-    "Zoek vervolgens de juiste afvalbak voor het voorwerp en plaats het voorwerp in de bak op dezelfde manier.",
-    "Pak nu een voorwerp om te beginnen!",
-    "Als je klaar bent met alles mag je op de finnish knop onder het bord klikken"
+    "De voorwerpen op de tafel kunnen opgepakt worden door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
+    "Om een object in een bak te plaatsen, houdt je je cursor op de bak, totdat het object in de bak zit.",
+    "Als je alle objecten in de juiste bakken heb gedaan mag je op de finish knop onder het bord klikken. \n Pak nu een voorwerp om te beginnen!"
   ];
 
 
@@ -82,7 +83,15 @@ window.onload = () => {
       }, 2000);
 
       responsiveVoice.speak(inhoud[index], "Dutch Male");
-      if(index == 5)
+      if(index == 0) {
+        knopTekst.setAttribute("text", "value: Volgende; color: black");
+        knopTekst.setAttribute("position", "-3.2 0 0.8");
+      }
+      if(index >= 0) {
+        let x = index + 1
+        voortgang.setAttribute("text", "value: Introductie voortgang: " + x + "/5; color: black");
+      }
+      if(index == 4)
       {
         checkFinish();
       }
@@ -103,7 +112,7 @@ window.onload = () => {
   function foutObject() {
     responsiveVoice.speak("Dit is niet de juiste plek om dit te deponeren, weet je waar die wel moet?", "Dutch Male");
     aantalFouten++;
-    console.log("Tot nu toe zijn er : " + aantalFouten + " fouten");
+    console.log("Tot nu toe zijn er: " + aantalFouten + " fouten");
   }
 
 
@@ -270,6 +279,7 @@ window.onload = () => {
         let camera_position = camera.getAttribute('position');
 
         function plaatsObject() {
+          responsiveVoice.speak("Goed zo, dit is de juiste plek om dit te deponeren!", "Dutch Male");
           document.getElementById("js--hold").remove();
           addListeners();
           hold = null;
