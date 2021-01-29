@@ -6,7 +6,6 @@ window.onload = () => {
   //     fetch needed elements
   let aantalFouten = 0;
   const volgende = document.getElementById('js--volgendeSlide');
-  const vorige = document.getElementById('js--vorigeSlide')
   const display = document.getElementById('js--displayBox');
   const finish = document.getElementById('js--score');
   const inhoud = ["Hallo welkom bij onze VR experience. Deze VR room gaat je helpen beter leren om te gaan met verschillende veiligheidsvoorschriften van het chemie lab op de Hogeschool Leiden",
@@ -14,7 +13,7 @@ window.onload = () => {
     "Je kunt de voorwerpen op de tafel oppakken door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
     "Zoek vervolgens de juiste afvalbak voor het voorwerp en plaats het voorwerp in de bak op dezelfde manier.",
     "Pak nu een voorwerp om te beginnen!",
-    "Als je klaar bent met alles mag je op de knop onder het bord klikken"
+    "Als je klaar bent met alles mag je op de finnish knop onder het bord klikken"
   ];
 
 
@@ -41,23 +40,27 @@ window.onload = () => {
     if(aantalFouten <= 2)
     {
       laatFoutZien(0);
-      responsiveVoice.speak(laatFoutZien(0)[0], "Dutch Female");
+      responsiveVoice.speak(laatFoutZien(0)[0], "Dutch Male");
     }
     else if(aantalFouten <= 6)
     {
       laatFoutZien(1);
-      responsiveVoice.speak(laatFoutZien(1)[1], "Dutch Female");
+      responsiveVoice.speak(laatFoutZien(1)[1], "Dutch Male");
     }
     else if(aantalFouten > 6)
     {
       laatFoutZien(2);
-      responsiveVoice.speak(laatFoutZien(2)[2], "Dutch Female");
+      responsiveVoice.speak(laatFoutZien(2)[2], "Dutch Male");
     }
   }
 
   function checkFinish()
   {
-    finish.setAttribute("position", "4 -6.3 0.1");
+    finish.setAttribute("position", "-9 -6.3 0.1");
+    finish.setAttribute("animation", "property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: -9 -6.6 0");
+    
+    volgende.setAttribute("position", "50 50 50");
+    volgende.removeAttribute("animation");
   }
 
   finish.onclick = (event) =>
@@ -78,8 +81,8 @@ window.onload = () => {
         laatTextZien(index), index++;
       }, 2000);
 
-      responsiveVoice.speak(inhoud[index], "Dutch Female");
-      if(index == 1)
+      responsiveVoice.speak(inhoud[index], "Dutch Male");
+      if(index == 5)
       {
         checkFinish();
       }
@@ -94,11 +97,11 @@ window.onload = () => {
 
 
   function spreekObject(object) {
-    responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?", "Dutch Female");
+    responsiveVoice.speak("Je hebt nu " + object + " opgepakt. Weet je waar die naar toe moet?", "Dutch Male");
   }
 
   function foutObject() {
-    responsiveVoice.speak("Dit is niet de juiste plek om dit te deponeren, weet je waar die wel moet?", "Dutch Female");
+    responsiveVoice.speak("Dit is niet de juiste plek om dit te deponeren, weet je waar die wel moet?", "Dutch Male");
     aantalFouten++;
     console.log("Tot nu toe zijn er : " + aantalFouten + " fouten");
   }
@@ -148,12 +151,17 @@ window.onload = () => {
   const maatCylinder = document.getElementById('js--maatCylinder').getAttribute("id"); //emmer zonder zak
   const bekerGlas = document.getElementById('js--bekerGlas').getAttribute("id"); //plastic bak
   const pipet = document.getElementById('js--pipet').getAttribute("id"); // onbekend
+  const petriKaas = document.getElementById("js--petriSchaal_Kaas").getAttribute("id");
 
   const placeholders = document.getElementsByClassName('js--placeholder');
   const emmerZak = document.getElementById('js--emmerZak').getAttribute("id"); //besmette bactierplaat gaat hier in, petris met stip
   const emmer = document.getElementById('js--emmer').getAttribute("id"); //besmet glaswerk
   const plasticBak = document.getElementById('js--plasticBak').getAttribute("id"); //gebruikt niet besmet glas
   const reageerMand = document.getElementById('js--reageerBuisMand').getAttribute("id"); //reageerbuis
+  const driepoot = document.getElementById("js--driepoot").getAttribute("id");
+  const kokerGroot = document.getElementById("js--kokerGroot").getAttribute("id");
+  const kokerKlein = document.getElementById("js--kokerKlein").getAttribute("id");
+  const tonBlauw = document.getElementById("js--tonBlauw").getAttribute("id")
 
   function addListeners() {
     for (let i = 0; i < pickups.length; i++) {
@@ -191,7 +199,7 @@ window.onload = () => {
               case reageerBuis:
                 console.log("reageerBuis");
                 spreekObject("reageerbuis");
-                toonInformatie("Reageerbuis", "Glas", "Geen");
+                toonInformatie("Reageerbuis", "Glas", "Ammonia");
                 posZ = posZ - 0.4
                 break;
               case petriInhoud:
@@ -202,7 +210,7 @@ window.onload = () => {
               case maatCylinder:
                 console.log("maatcylinder");
                 spreekObject("maatcilinder");
-                toonInformatie("Maatcilinder", "Glas", "Geen");
+                toonInformatie("Maatcilinder", "Glas", "Ammonia");
                 posZ = posZ - 0.4
                 break;
               case bekerGlas:
@@ -217,8 +225,12 @@ window.onload = () => {
                 posZ = posZ + 0.2
                 rotation = "90 0 0";
                 break;
+              case petriKaas:
+                console.log(petriKaas);                
+                spreekObject("zelfgemaakte kaas");
+                toonInformatie("Zelfgemaakte kaas", "Kaas", "N.v.t.");
             }
-            camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="' + scaleX + " " + scaleY + " " + scaleZ + '" position="0.5 ' + posZ + ' -0.5" rotation="' + rotation + '"></a-gltf-model>';
+            camera.innerHTML += '<a-gltf-model id="js--hold" class="js--pickup js--interact" src="' + source + '" scale="' + scaleX + ' ' + scaleY + ' ' + scaleZ + '" position="0.5 ' + posZ + ' -0.5" rotation="' + rotation + '"></a-gltf-model>';
             hold = "hold";
             this.remove();
 
@@ -344,10 +356,25 @@ window.onload = () => {
             case kokerKlein:
               foutObject();
               break;
+
+            case tonBlauw:
+              if(huidigObject == petriKaas) {
+                item.setAttribute("position", {x: 14, y: -4, z: -3});
+                plaatsObject();
+                resetInfo();
+                break;
+              }
+              else {
+                foutObject();
+                break;
+              }
           }
         } else {
-          responsiveVoice.speak("Je staat niet dichtbij genoeg.", "Dutch Female")
+          responsiveVoice.speak("Je staat niet dichtbij genoeg.", "Dutch Male")
         }
+      }
+      else {
+        responsiveVoice.speak("Pak eerst een object om weg te gooien.", "Dutch Male")
       }
     });
   }
