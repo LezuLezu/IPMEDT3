@@ -225,7 +225,7 @@ window.onload = () => {
               case bekerGlas:
                 console.log("bekerglas");
                 spreekObject("bekerglas");
-                toonInformatie("Bekerglas", "Plastic", "Geen");
+                toonInformatie("Bekerglas", "Glas", "Geen");
                 break;
               case pipet:
                 console.log("pipet");
