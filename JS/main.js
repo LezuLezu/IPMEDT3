@@ -5,6 +5,7 @@ window.onload = () => {
   //   whiteboard code
   //     fetch needed elements
   let aantalFouten = 0;
+  let aantalJuiste = 0;
   const volgende = document.getElementById('js--volgendeSlide');
   const display = document.getElementById('js--displayBox');
   const finish = document.getElementById('js--score');
@@ -14,7 +15,7 @@ window.onload = () => {
     "Loop door het lab met behulp van de grijze vlakken. Houd je cursor op het vlak tot je begint te bewegen.",
     "De voorwerpen op de tafel kunnen opgepakt worden door je cursor erop te houden totdat je het voorwerp in je hand hebt.",
     "Om een object in een bak te plaatsen, houdt je je cursor op de bak, totdat het object in de bak zit.",
-    "Als je alle objecten in de juiste bakken heb gedaan mag je op de finish knop onder het bord klikken. \n Pak nu een voorwerp om te beginnen!"
+    "Als je alle objecten in de juiste bakken heb gedaan mag je op de finish knop onder het bord klikken die dan verschijnt. \n Pak nu een voorwerp om te beginnen!"
   ];
 
 
@@ -26,9 +27,9 @@ window.onload = () => {
     ];
   display.setAttribute("value", fouten[getal]);
   return fouten;
-}
+  }
 
-  index = 0;
+  let index = 0;
 
   function laatTextZien(getal) {
     console.log(getal);
@@ -55,13 +56,18 @@ window.onload = () => {
     }
   }
 
-  function checkFinish()
-  {
-    finish.setAttribute("position", "-9 -6.3 0.1");
-    finish.setAttribute("animation", "property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: -9 -6.6 0");
-    
-    volgende.setAttribute("position", "50 50 50");
-    volgende.removeAttribute("animation");
+  function checkFinish() {
+    if(aantalJuiste == 7) {
+      finish.setAttribute("position", "-9 -6.3 0.1");
+      finish.setAttribute("animation", "property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: -9 -6.6 0");
+      
+      volgende.setAttribute("position", "50 50 50");
+      volgende.removeAttribute("animation");
+      console.log("Ja nu");
+    }
+    else {
+      console.log("Nog niet");
+    }
   }
 
   finish.onclick = (event) =>
@@ -91,9 +97,9 @@ window.onload = () => {
         let x = index + 1
         voortgang.setAttribute("text", "value: Introductie voortgang: " + x + "/5; color: black");
       }
-      if(index == 4)
-      {
-        checkFinish();
+      if(index == 4) {
+        volgende.setAttribute("position", "50 50 50");
+        volgende.removeAttribute("animation");
       }
     }
     else
@@ -225,7 +231,7 @@ window.onload = () => {
               case bekerGlas:
                 console.log("bekerglas");
                 spreekObject("bekerglas");
-                toonInformatie("Bekerglas", "Plastic", "Geen");
+                toonInformatie("Bekerglas", "Glas", "Geen");
                 break;
               case pipet:
                 console.log("pipet");
@@ -286,6 +292,8 @@ window.onload = () => {
           source = null;
           console.log("Correcte plek!");
           scene.appendChild(item);
+          aantalJuiste++;
+          checkFinish();
         }
 
 
@@ -394,5 +402,4 @@ window.onload = () => {
     displayInfo[1].setAttribute("value", "Materiaal: N.v.t.");
     displayInfo[2].setAttribute("value", "Inhoud: N.v.t.");
   }
-
 }
